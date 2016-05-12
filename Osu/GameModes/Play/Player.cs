@@ -248,8 +248,16 @@ namespace ClassLibrary2.Osu.GameModes.Play
         #region HaxCheck
         public HookManager haxCheckHook;
 
-        public static void HaxCheckTarget(bool forceFail)
+        public static void HaxCheckTarget(object this0, bool arg)
         {
+            if(this0 != null)
+            {
+                Console.WriteLine("this0: {0} type: {1}", this0, this0.GetType());
+            }
+            if (arg != null)
+            {
+                Console.WriteLine("arg: " + arg.ToString());
+            }
             if (classObject != null)
             {
                 var kek = HaxCheckCount;
@@ -285,7 +293,7 @@ namespace ClassLibrary2.Osu.GameModes.Play
             
             var haxCheck = type.GetMethod(Methods.HaxCheck, BindingFlags.NonPublic | BindingFlags.Instance);
             haxCheckHook =
-                new HookManager(haxCheck, ((Action<bool>)HaxCheckTarget).Method, classObject);
+                new HookManager(haxCheck, ((Action<object, bool>)HaxCheckTarget).Method, classObject);
             
 
         }

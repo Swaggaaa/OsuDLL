@@ -79,7 +79,7 @@ namespace ClassLibrary2.Hack
             Console.WriteLine("Play! {0}", _beatmap.HitObjects.Count);
             reset:
 
-            int prevTime = CurrentTime;
+            int prevTime = 0;
             foreach (var hitObject in _beatmap.HitObjects)
             {
 
@@ -122,6 +122,7 @@ namespace ClassLibrary2.Hack
                 }
                 var o = hitObject;
                 Task.Run(() => OnHitObject(o));
+                prevTime = CurrentTime;
                 // Console.WriteLine("{0} - {1}", hitObject.StartTime, _xBusy);
             }
 
