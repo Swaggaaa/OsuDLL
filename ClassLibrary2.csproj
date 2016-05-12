@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3C57844D-04F9-433C-A5AF-EE3BAB2380AC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ClassLibrary2</RootNamespace>
+    <AssemblyName>ClassLibrary2</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Hack\Relax.cs" />
+    <Compile Include="Helpers\Global.cs" />
+    <Compile Include="Helpers\Helper.cs" />
+    <Compile Include="Helpers\HookManager.cs" />
+    <Compile Include="Microsoft\Xna\Framework\Input\ButtonState.cs" />
+    <Compile Include="Osu\Audio\AudioEngine.cs" />
+    <Compile Include="Osu\Classes\InterProcessOsu.cs" />
+    <Compile Include="Osu\Classes\MKeyHandlers\Class370.cs" />
+    <Compile Include="Osu\Classes\MKeyHandlers\Class925.cs" />
+    <Compile Include="Osu\Enums\BadFlags.cs" />
+    <Compile Include="Osu\Enums\HitObjectType.cs" />
+    <Compile Include="Osu\Enums\Mods.cs" />
+    <Compile Include="Osu\Enums\OsuModes.cs" />
+    <Compile Include="Osu\Enums\PlayModes.cs" />
+    <Compile Include="Osu\Enums\ReplayAction.cs" />
+    <Compile Include="Osu\GameMods\Play\Player.cs" />
+    <Compile Include="Osu\GameplayElements\Beatmaps\Beatmap.cs" />
+    <Compile Include="Osu\GameplayElements\Beatmaps\BeatmapBase.cs" />
+    <Compile Include="Osu\GameplayElements\Beatmaps\BeatmapManager.cs" />
+    <Compile Include="Osu\GameplayElements\HitObject.cs" />
+    <Compile Include="Osu\GameplayElements\HitObjectManager.cs" />
+    <Compile Include="Osu\GameplayElements\Scoring\ModManager.cs" />
+    <Compile Include="Osu\Graphics\Screenshot.cs" />
+    <Compile Include="VirtualKeyCode.cs" />
+    <Compile Include="keyboard.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\osu-BMAPI-master\osu!BMAPI.csproj">
+      <Project>{7d292085-3f6f-4299-b941-4d2c185da37e}</Project>
+      <Name>osu!BMAPI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
