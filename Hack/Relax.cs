@@ -10,7 +10,6 @@ using ClassLibrary2.Helpers;
 using ClassLibrary2.Osu.Audio;
 using ClassLibrary2.Osu.Classes.MKeyHandlers;
 using ClassLibrary2.Osu.GameplayElements;
-using ClassLibrary2.Osu.GameMods.Play;
 using ClassLibrary2.Osu.GameplayElements.Beatmaps;
 using ClassLibrary2.Osu.GameplayElements.Scoring;
 using Microsoft.Xna.Framework.Input;
@@ -110,8 +109,7 @@ namespace ClassLibrary2.Hack
                     {
                        // Console.WriteLine("reset");
                         prevTime = CurrentTime;
-                        break;
-                        //goto reset;
+                        goto reset;
                     }
                     prevTime = CurrentTime;
                     //Console.WriteLine("Time: {0}, Next: {1}", currentTime, hitObject.StartTime);

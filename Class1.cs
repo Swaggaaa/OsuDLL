@@ -19,7 +19,7 @@ using ClassLibrary2.Osu.Audio;
 using ClassLibrary2.Osu.Classes;
 using ClassLibrary2.Osu.Classes.MKeyHandlers;
 using ClassLibrary2.Osu.Enums;
-using ClassLibrary2.Osu.GameMods.Play;
+using ClassLibrary2.Osu.GameModes.Play;
 using ClassLibrary2.Osu.GameplayElements.Beatmaps;
 using ClassLibrary2.Osu.GameplayElements.Scoring;
 using ClassLibrary2.Osu.Graphics;

@@ -3,12 +3,11 @@ using System.Linq;
 using System.Reflection;
 using ClassLibrary2.Helpers;
 using ClassLibrary2.Helpers.ClassLibrary2;
-using ClassLibrary2.Osu.Classes;
-using ClassLibrary2.Osu.GameplayElements.Scoring;
 using ClassLibrary2.Osu.Enums;
 using ClassLibrary2.Osu.GameplayElements;
+using ClassLibrary2.Osu.GameplayElements.Scoring;
 
-namespace ClassLibrary2.Osu.GameMods.Play
+namespace ClassLibrary2.Osu.GameModes.Play
 {
     //Beatmap Class -> PlayModes.Osu 1k
     //Remember has  anti hax
@@ -51,7 +50,6 @@ namespace ClassLibrary2.Osu.GameMods.Play
                         return Enums.BadFlags.Clean;
                     }
                 }
-                Console.WriteLine("GetClass Object");
                 var value = Helper.GetValue<object>(_classObject, null);
                 return value;
             }
@@ -250,7 +248,7 @@ namespace ClassLibrary2.Osu.GameMods.Play
         #region HaxCheck
         public HookManager haxCheckHook;
 
-        public static void HaxCheckTarget(bool forceFail = false)
+        public static void HaxCheckTarget(bool forceFail)
         {
             if (classObject != null)
             {

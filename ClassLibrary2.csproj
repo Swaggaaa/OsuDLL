@@ -60,7 +60,7 @@
     <Compile Include="Osu\Enums\OsuModes.cs" />
     <Compile Include="Osu\Enums\PlayModes.cs" />
     <Compile Include="Osu\Enums\ReplayAction.cs" />
-    <Compile Include="Osu\GameMods\Play\Player.cs" />
+    <Compile Include="Osu\GameModes\Play\Player.cs" />
     <Compile Include="Osu\GameplayElements\Beatmaps\Beatmap.cs" />
     <Compile Include="Osu\GameplayElements\Beatmaps\BeatmapBase.cs" />
     <Compile Include="Osu\GameplayElements\Beatmaps\BeatmapManager.cs" />
