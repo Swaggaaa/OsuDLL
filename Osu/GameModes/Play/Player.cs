@@ -289,11 +289,11 @@ namespace ClassLibrary2.Osu.GameModes.Play
         {
             var checkFlashLightHax = type.GetMethod(Methods.CheckFlashLightHax, BindingFlags.NonPublic | BindingFlags.Instance);
             checkFlashLightHaxHook = 
-                new HookManager(checkFlashLightHax, CheckFlashLightHaxTarget, classObject);
+                new HookManager(checkFlashLightHax, CheckFlashLightHaxTarget);
             
             var haxCheck = type.GetMethod(Methods.HaxCheck, BindingFlags.NonPublic | BindingFlags.Instance);
             haxCheckHook =
-                new HookManager(haxCheck, ((Action<object, bool>)HaxCheckTarget).Method, classObject);
+                new HookManager(haxCheck, ((Action<object, bool>)HaxCheckTarget).Method);
             
 
         }

@@ -25,7 +25,7 @@ namespace ClassLibrary2.Helpers
             private byte[] originalAsm = new byte[7];
 
             public MethodInfo OriginalMethodInfo;
-            public Type ClassType = null;
+            /*public Type ClassType = null;
 
             private object classObject;
             public object ClassObject
@@ -39,27 +39,26 @@ namespace ClassLibrary2.Helpers
                     ClassType = value.GetType();
                     classObject = value;
                 }
-            }
+            }*/
 
             [DllImport("kernel32.dll", SetLastError = true)]
             private static extern bool VirtualProtect(IntPtr lpAddress, uint dwSize,
-uint flNewProtect, out uint lpflOldProtect);
+                    uint flNewProtect, out uint lpflOldProtect);
 
-
-            public HookManager(MethodInfo from, MethodInfo to, object classObject = null)
+            public HookManager(MethodInfo from, MethodInfo to)
             {
-                PrepareHook(from, to, classObject);
+                PrepareHook(from, to);
 
             }
 
-            public HookManager(MethodInfo from, Action to, object classObject = null)
+            public HookManager(MethodInfo from, Action to)
             {
-                PrepareHook(from, to.Method, classObject);
+                PrepareHook(from, to.Method);
             }
 
-            public static HookManager HookManagerEx<T>(MethodInfo from, Func<T> to, object classObject = null)
+            public static HookManager HookManagerEx<T>(MethodInfo from, Func<T> to)
             {
-                return new HookManager(from, to.Method, classObject);
+                return new HookManager(from, to.Method);
             }
 
             private void PrepareHook(MethodInfo from, MethodInfo to, object classObject = null)
@@ -129,11 +128,11 @@ uint flNewProtect, out uint lpflOldProtect);
                 }
             }
 
-            public object CallOriginal(params object[] args)
+            public object CallOriginal(object this0, params object[] args)
             {
                 Uninstall();
                 object value = null;
-                value = OriginalMethodInfo.Invoke(classObject, args.Length == 0 ? null : args);
+                value = OriginalMethodInfo.Invoke(this0, args.Length == 0 ? null : args);
                 Install();
                 return value;
             }

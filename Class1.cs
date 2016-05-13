@@ -58,10 +58,10 @@ namespace ClassLibrary2
         private static Process[] detourProcess()
         {
             Console.WriteLine("Topkeked");
-            var object2 = (Process[])hookTest.CallOriginal();
+            var object2 = (Process[])hookTest.CallOriginal(null);
             foreach (var process in object2)
             {
-                Console.WriteLine(process.ProcessName);
+                //Console.WriteLine(process.ProcessName);
             }
             return object2;
         }
@@ -79,7 +79,7 @@ namespace ClassLibrary2
                 hookTest = new HookManager(typeof(Process).GetMethod("GetProcesses", new Type[] { }), typeof(ClassLibrary2.Class1).GetMethod("detourProcess", BindingFlags.Static | BindingFlags.NonPublic));
                 hookTest.CheckBytes();
                 Console.WriteLine("Install Hook");
-                //hookTest.Install();
+                hookTest.Install();
                 Console.WriteLine("Installed Hook");
                 hookTest.CheckBytes();
             }
