@@ -72,12 +72,6 @@
     <Compile Include="keyboard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\osu-BMAPI-master\osu!BMAPI.csproj">
-      <Project>{7d292085-3f6f-4299-b941-4d2c185da37e}</Project>
-      <Name>osu!BMAPI</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

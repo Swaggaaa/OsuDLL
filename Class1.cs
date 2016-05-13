@@ -15,6 +15,7 @@ using Microsoft.Win32.SafeHandles;
 //using BMAPI.v1;
 //using BMAPI.v1.HitObjects;
 using ClassLibrary2.Helpers;
+using ClassLibrary2.Helpers.ClassLibrary2;
 using ClassLibrary2.Osu.Audio;
 using ClassLibrary2.Osu.Classes;
 using ClassLibrary2.Osu.Classes.MKeyHandlers;
@@ -52,12 +53,43 @@ namespace ClassLibrary2
            pwzMethodName("Constructor");
         }
 
+        private static HookManager hookTest;
+
+        private static Process[] detourProcess()
+        {
+            Console.WriteLine("Topkeked");
+            var object2 = (Process[])hookTest.CallOriginal();
+            foreach (var process in object2)
+            {
+                Console.WriteLine(process.ProcessName);
+            }
+            return object2;
+        }
         private static int pwzMethodName(String pwzArgument)
         {
             if (Started)
             {
                 return 1;
             }
+            InitConsole();
+            Console.WriteLine(pwzArgument);
+            Console.WriteLine("Testing");
+            try
+            {
+                hookTest = new HookManager(typeof(Process).GetMethod("GetProcesses", new Type[] { }), typeof(ClassLibrary2.Class1).GetMethod("detourProcess", BindingFlags.Static | BindingFlags.NonPublic));
+                hookTest.CheckBytes();
+                Console.WriteLine("Install Hook");
+                //hookTest.Install();
+                Console.WriteLine("Installed Hook");
+                hookTest.CheckBytes();
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);   
+                throw;
+            }
+
+
             ah = pwzArgument;
             Started = true;
             new Thread(hack).Start();
@@ -86,9 +118,8 @@ namespace ClassLibrary2
         }
 
         public const int offset = 25;
-       
 
-        static void hack()
+        static void InitConsole()
         {
             AllocConsole();
             IntPtr stdHandle = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -97,8 +128,13 @@ namespace ClassLibrary2
             Encoding encoding = System.Text.Encoding.GetEncoding(MY_CODE_PAGE);
             StreamWriter standardOutput = new StreamWriter(fileStream, encoding);
             standardOutput.AutoFlush = true;
-            Console.SetOut(standardOutput); 
+            Console.SetOut(standardOutput);
             Console.WriteLine("{0} - {1}", Process.GetCurrentProcess().MainModule.FileName, ah);
+        }
+
+        static void hack()
+        {
+
             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
             foreach (var a in AppDomain.CurrentDomain.GetAssemblies())
             {
