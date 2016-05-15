@@ -1,5 +1,6 @@
 before_script:
-    - apt-get install mono-complete
+    - apt-get update
+    - apt-get -y install mono-complete
     - wget https://www.nuget.org/nuget.exe
     - mono nuget.exe restore "ClassLibrary2.sln"
 
