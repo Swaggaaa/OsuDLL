@@ -1,6 +1,6 @@
 before_script:
     - apt-get update
-    - apt-get -y install mono-complete
+    - apt-get -y install mono-devel
     - wget https://www.nuget.org/nuget.exe
     - mozroots --import --machine --sync
     - echo -e "y\ny\n" > yass
