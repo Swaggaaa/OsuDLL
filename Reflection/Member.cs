@@ -9,7 +9,7 @@ using System.Reflection.Emit;
 namespace ClassLibrary2.Reflection
 {
     //Ghetto
-    public interface IMember
+    internal interface IMember
     {
         bool IsStatic
         {
@@ -17,12 +17,12 @@ namespace ClassLibrary2.Reflection
         }
     }
     //http://stackoverflow.com/questions/16073091/is-there-a-way-to-create-a-delegate-to-get-and-set-values-for-a-fieldinfo
-    public class Member<T> : IMember
+    internal class Member<S, T> : IMember
     {
-        private MemberInfo memberInfo;
+        public MemberInfo memberInfo;
         public Type ParentType;
-        public Func<object, T> GetValue;
-        public Action<object, T> SetValue;
+        public Func<S, T> GetValue;
+        public Action<S, T> SetValue;
         public bool IsStatic
         {
             get
@@ -34,7 +34,8 @@ namespace ClassLibrary2.Reflection
         {
             this.memberInfo = memberInfo0;
             ParentType = parentType;
-            switch(memberInfo0.MemberType)
+            Console.WriteLine("S:{0} T:{1} Parent: {2}", typeof(S), typeof(T), parentType);
+            switch (memberInfo0.MemberType)
             {
                 case System.Reflection.MemberTypes.Field:
                     GetValue = CreateGetter((FieldInfo)memberInfo0);
@@ -51,10 +52,10 @@ namespace ClassLibrary2.Reflection
         }
 
         #region CreateGetter
-        private Func<object, T> CreateGetter(FieldInfo field)
+        private Func<S, T> CreateGetter(FieldInfo field)
         {
-            string methodName = field.ReflectedType.FullName + ".get_" + field.Name;
-            DynamicMethod getterMethod = new DynamicMethod(methodName, typeof(T), new Type[1] { typeof(object) }, true);
+            /*string methodName = field.ReflectedType.FullName + ".get_" + field.Name;
+            DynamicMethod getterMethod = new DynamicMethod(methodName, typeof(T), new Type[1] { typeof(S) }, true);
             ILGenerator gen = getterMethod.GetILGenerator();
             if (field.IsStatic)
             {
@@ -66,22 +67,31 @@ namespace ClassLibrary2.Reflection
                 gen.Emit(OpCodes.Ldfld, field);
             }
             gen.Emit(OpCodes.Ret);
-            return (Func<object, T>)getterMethod.CreateDelegate(typeof(Func<object, T>));
+            return (Func<S, T>)getterMethod.CreateDelegate(typeof(Func<S, T>));*/
+            Console.WriteLine(memberInfo.ReflectedType);
+
+            var instExp = Expression.Parameter(typeof(S));
+            var castToType = Expression.Convert(instExp, ParentType);
+            var fieldExp = Expression.Field(castToType, field);
+            var CastToRealType = Expression.Convert(fieldExp, typeof(T));
+
+            return Expression.Lambda<Func<S, T>>(CastToRealType, instExp).Compile();
+            //return (Func<S, T>)Delegate.CreateDelegate(typeof(Func<S, T>), field.??);
         }
 
-        private Func<object, T> CreateGetter(PropertyInfo property)
+        private Func<S, T> CreateGetter(PropertyInfo property)
         {
-            return (Func<object, T>)Delegate.CreateDelegate(typeof(Func<object, T>),
+            return (Func<S, T>)Delegate.CreateDelegate(typeof(Func<S, T>),
                                              property.GetGetMethod());
         }
         #endregion
 
 
         #region CreateSetter
-        private Action<object, T> CreateSetter(FieldInfo field)
+        private Action<S, T> CreateSetter(FieldInfo field)
         {
             string methodName = field.ReflectedType.FullName + ".set_" + field.Name;
-            DynamicMethod setterMethod = new DynamicMethod(methodName, null, new Type[2] { typeof(object), typeof(T) }, true);
+            DynamicMethod setterMethod = new DynamicMethod(methodName, null, new Type[2] { typeof(S), typeof(T) }, true);
             ILGenerator gen = setterMethod.GetILGenerator();
             if (field.IsStatic)
             {
@@ -95,14 +105,14 @@ namespace ClassLibrary2.Reflection
                 gen.Emit(OpCodes.Stfld, field);
             }
             gen.Emit(OpCodes.Ret);
-            return (Action<object, T>)setterMethod.CreateDelegate(typeof(Action<object, T>));
+            return (Action<S, T>)setterMethod.CreateDelegate(typeof(Action<S, T>));
         }
 
-        private Action<object, T> CreateSetter(PropertyInfo property)
+        private Action<S, T> CreateSetter(PropertyInfo property)
         {
-            return (Action<object, T>)Delegate.CreateDelegate(typeof(Action<object, T>),
+            return (Action<S, T>)Delegate.CreateDelegate(typeof(Action<S, T>),
                                                property.GetSetMethod());
-        } 
+        }
         #endregion
     }
 }
