@@ -1,0 +1,6 @@
+before_script:
+    - nuget restore "ClassLibrary2.sln"
+
+build:
+ script:
+    - xbuild  "ClassLibrary2.sl"
