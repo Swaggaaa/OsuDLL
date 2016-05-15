@@ -72,8 +72,6 @@
     <Compile Include="Osu\GameplayElements\HitObjectManager.cs" />
     <Compile Include="Osu\GameplayElements\Scoring\ModManager.cs" />
     <Compile Include="Osu\Graphics\Screenshot.cs" />
-    <Compile Include="Reflection\Member.cs" />
-    <Compile Include="Reflection\ReflectionCache.cs" />
     <Compile Include="VirtualKeyCode.cs" />
     <Compile Include="keyboard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
