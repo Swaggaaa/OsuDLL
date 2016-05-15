@@ -68,11 +68,15 @@
     <Compile Include="Osu\GameplayElements\HitObjectManager.cs" />
     <Compile Include="Osu\GameplayElements\Scoring\ModManager.cs" />
     <Compile Include="Osu\Graphics\Screenshot.cs" />
+    <Compile Include="Reflection\Member.cs" />
+    <Compile Include="Reflection\ReflectionCache.cs" />
     <Compile Include="VirtualKeyCode.cs" />
     <Compile Include="keyboard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
