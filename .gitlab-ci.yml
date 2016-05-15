@@ -1,6 +1,8 @@
 before_script:
-    - nuget restore "ClassLibrary2.sln"
+    - apt-get install mono-complete
+    - wget https://www.nuget.org/nuget.exe
+    - mono nuget.exe restore "ClassLibrary2.sln"
 
 build:
  script:
-    - xbuild  "ClassLibrary2.sl"
+    - xbuild  "ClassLibrary2.sln"
