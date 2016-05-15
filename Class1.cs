@@ -15,7 +15,6 @@ using Microsoft.Win32.SafeHandles;
 //using BMAPI.v1;
 //using BMAPI.v1.HitObjects;
 using ClassLibrary2.Helpers;
-using ClassLibrary2.Helpers.ClassLibrary2;
 using ClassLibrary2.Osu.Audio;
 using ClassLibrary2.Osu.Classes;
 using ClassLibrary2.Osu.Classes.MKeyHandlers;
@@ -73,7 +72,7 @@ namespace ClassLibrary2
             }
             InitConsole();
             Console.WriteLine(pwzArgument);
-            Console.WriteLine("Testing");
+           /* Console.WriteLine("Testing");
             try
             {
                 hookTest = new HookManager(typeof(Process).GetMethod("GetProcesses", new Type[] { }), typeof(ClassLibrary2.Class1).GetMethod("detourProcess", BindingFlags.Static | BindingFlags.NonPublic));
@@ -87,7 +86,7 @@ namespace ClassLibrary2
             {
                 Console.WriteLine(exception.Message);   
                 throw;
-            }
+            }*/
 
 
             ah = pwzArgument;
@@ -177,10 +176,9 @@ namespace ClassLibrary2
                                         player.InstallHooks();
 
                                         var list = player.HitObjectManager0.HitObjects;
-
+                                        Console.WriteLine("HitObject Count: {0}", list.Count);
                                         if (list.Count > 0)
                                         {
-                                            
                                             var relax =
                                                 new Hack.Relax(
                                                     new Beatmap(
@@ -192,6 +190,10 @@ namespace ClassLibrary2
                                         {
                                             Thread.Sleep(500);
                                         }
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("played invalid or hitobject isnvalid");
                                     }
 
                                 }

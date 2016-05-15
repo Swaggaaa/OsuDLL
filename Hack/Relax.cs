@@ -16,14 +16,16 @@ using Microsoft.Xna.Framework.Input;
 
 namespace ClassLibrary2.Hack
 {
-    public delegate void OnHitOBjectEvent(object sender, HitObject e);
     class Relax
     {
-        public event OnHitOBjectEvent HitObjectHandler;
 
         private readonly Beatmap _beatmap;
         private readonly int _offset;
-        private int CurrentTime => AudioEngine.Time;
+        private int CurrentTime
+        {
+            get { return AudioEngine.Time; }
+        }
+
         private bool _zBusy = false;
         private bool _xBusy = false;
 
@@ -39,10 +41,7 @@ namespace ClassLibrary2.Hack
 	        {
                 HitObjectHandler(null, hitObject);
 	        }*/
-            if (hitObject.Duration == 0)
-            {
-                hitObject.EndTime += 40;
-            }
+            hitObject.EndTime += 40;
             if (!_zBusy)
             {
                 _zBusy = true;
@@ -50,6 +49,7 @@ namespace ClassLibrary2.Hack
                 //Class370.ButtonState2 = ButtonState.Pressed;
                 while (CurrentTime < hitObject.EndTime)
                 {
+                    Thread.Sleep( hitObject.EndTime - CurrentTime);
                     //Class370.ButtonState2 = ButtonState.Pressed; ;
 
                 }
@@ -65,7 +65,7 @@ namespace ClassLibrary2.Hack
                 Keyboard.SimulateKeyDown(VirtualKeyCode.VK_X);
                 while (CurrentTime < hitObject.EndTime)
                 {
-                    ;
+                    Thread.Sleep(hitObject.EndTime - CurrentTime);
                 }
                 Keyboard.SimulateKeyUp(VirtualKeyCode.VK_X);
                 _zBusy = false;
@@ -112,6 +112,7 @@ namespace ClassLibrary2.Hack
                         goto reset;
                     }
                     prevTime = CurrentTime;
+                    Thread.Sleep(1);
                     //Console.WriteLine("Time: {0}, Next: {1}", currentTime, hitObject.StartTime);
 
                 }

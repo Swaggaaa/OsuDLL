@@ -1,8 +1,12 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Runtime.Serialization.Formatters.Binary;
 using ClassLibrary2.Helpers;
 using ClassLibrary2.Osu.Enums;
+using Fasterflect;
 
 namespace ClassLibrary2.Osu.GameplayElements.Scoring
 {
@@ -16,6 +20,14 @@ namespace ClassLibrary2.Osu.GameplayElements.Scoring
         public static String ModsInstance = "\u0023\u003DqqQ_yLdFbeEbzu8hQoO1h_g\u003D\u003D";
         private static MemberInfo _mods;
 
+        private static T test<T>(object this0)
+        {
+            Console.WriteLine("Test Function");
+            var value = this0.CallMethod(null, "\u0023\u003DqPopUZdt\u0024MElxJY8Yofx32Q\u003D\u003D");
+            Console.WriteLine("test1: {0} test2: {1}", value,
+                (T)value);
+            return (T)value;
+        }
         public static object CurrentModsRaw
         {
             get
@@ -29,7 +41,9 @@ namespace ClassLibrary2.Osu.GameplayElements.Scoring
                         return null;
                     }
                 }
+                
                 var value = Helper.GetValue<object>(_mods, null);
+                test<Mods>(value);
                 return value;
             }
         }

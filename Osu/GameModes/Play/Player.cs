@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Reflection;
 using ClassLibrary2.Helpers;
-using ClassLibrary2.Helpers.ClassLibrary2;
 using ClassLibrary2.Osu.Enums;
 using ClassLibrary2.Osu.GameplayElements;
 using ClassLibrary2.Osu.GameplayElements.Scoring;
+using Fasterflect;
 
 namespace ClassLibrary2.Osu.GameModes.Play
 {
@@ -250,14 +250,16 @@ namespace ClassLibrary2.Osu.GameModes.Play
 
         public static void HaxCheckTarget(object this0, bool arg)
         {
-            if(this0 != null)
+            /*if(this0 != null)
             {
-                Console.WriteLine("this0: {0} type: {1}", this0, this0.GetType());
-            }
-            if (arg != null)
+                var haxCheckCount = this0.GetFieldValue(Instances.HaxCheckCount);
+                this0.SetFieldValue(Instances.HaxCheckCount, ((int)haxCheckCount) + 1);
+                Console.WriteLine("H1BadFlags: {0} {1}", Player.BadFlags, haxCheckCount);
+            }*/
+            /*if (arg != null)
             {
                 Console.WriteLine("arg: " + arg.ToString());
-            }
+            }*/
             if (classObject != null)
             {
                 var kek = HaxCheckCount;
@@ -316,11 +318,8 @@ namespace ClassLibrary2.Osu.GameModes.Play
 
         public void Dispose()
         {
-            Console.WriteLine("Disposing...");
             checkFlashLightHaxHook.Uninstall();
-            Console.WriteLine("Disposing1...");
             haxCheckHook.Uninstall();
-            Console.WriteLine("Disposing2...");
             BadFlags = BadFlags.Clean;
             Console.WriteLine("Disposed...");
 

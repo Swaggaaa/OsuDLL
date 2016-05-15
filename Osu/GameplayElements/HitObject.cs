@@ -100,7 +100,10 @@ namespace ClassLibrary2.Osu.GameplayElements
         }
 
         public int EndTime;
-        public int Duration => EndTime - StartTime;
+        public int Duration
+        {
+            get { return EndTime - StartTime; }
+        }
 
         public HitObject(object classObject)
         {

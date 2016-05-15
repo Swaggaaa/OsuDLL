@@ -1,0 +1,10 @@
+﻿<?xml version='1.0'?>
+<Obfuscator>
+  <Var name="InPath" value=".\bin\Release" />
+  <Var name="OutPath" value=".\bin\Release\Obfuscar" />
+  <Var name="KeepPublicApi" value="false" />
+  <Var name="HidePrivateApi" value="true" />
+  <Var name="UseUnicodeNames" value="true" />
+  <!-- <Var name="UseKoreanNames" value="true" /> -->
+  <Module file="$(InPath)\ClassLibrary2.dll" />
+</Obfuscator>

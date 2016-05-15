@@ -5,7 +5,6 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using ClassLibrary2.Helpers;
-using ClassLibrary2.Helpers.ClassLibrary2;
 
 namespace ClassLibrary2.Osu.Graphics
 {
@@ -26,7 +25,7 @@ namespace ClassLibrary2.Osu.Graphics
         private static Type type;        //Obfuscated Name for Reflection
 
         #region TakeDesktopScreenshot
-        public static HookManager TakeDesktopScreenshotHook;
+        internal static HookManager TakeDesktopScreenshotHook;
 
         public static byte[] TakeDesktopScreenshotTarget()
         {
