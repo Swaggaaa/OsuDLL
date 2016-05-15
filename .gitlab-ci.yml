@@ -2,6 +2,10 @@ before_script:
     - apt-get update
     - apt-get -y install mono-complete
     - wget https://www.nuget.org/nuget.exe
+    - mozroots --import --machine --sync
+    - certmgr -ssl -m https://go.microsoft.com
+    - certmgr -ssl -m https://nugetgallery.blob.core.windows.net
+    - certmgr -ssl -m https://nuget.org
     - mono nuget.exe restore "ClassLibrary2.sln"
 
 build:
