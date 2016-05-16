@@ -15,7 +15,6 @@ namespace ClassLibrary2.Osu.GameplayElements.Scoring
         public static String ClassName = "\u0023\u003DqW\u0024aXrDCVn2EqZL9WJ7UAI8x4GkP_aLJs_UX9w7ZUtVmvqMwlp7YXp2KlmRZRBVK9";
 
         private static Type type;        //Obfuscated Name for Reflection
-        private static object actualObject;        //Obfuscated Name for Reflection
 
         public static String ModsInstance = "\u0023\u003DqqQ_yLdFbeEbzu8hQoO1h_g\u003D\u003D";
         private static MemberInfo _mods;

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+#pragma warning disable 0649
 internal struct HARDWAREINPUT
 {
     public uint Msg;
@@ -44,7 +45,7 @@ struct INPUT
     public uint Type;
     public MOUSEKEYBDHARDWAREINPUT Data;
 }
-
+#pragma warning restore 0649
 namespace ClassLibrary2
 {
     internal static class Keyboard

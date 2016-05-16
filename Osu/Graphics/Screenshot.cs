@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using ClassLibrary2.Helpers;
+using Fasterflect;
 
 namespace ClassLibrary2.Osu.Graphics
 {
@@ -12,7 +13,7 @@ namespace ClassLibrary2.Osu.Graphics
     {
         public const String ClassName = "\u0023\u003Dq9kuZAhBjpwaIdJRoNa4r9yqVMbiHH6PQP2dcbV5WBzs\u003D";
 
-        public struct Instances
+        public struct Members
         {
 
         }
@@ -22,42 +23,36 @@ namespace ClassLibrary2.Osu.Graphics
             public const String TakeDesktopScreenshot = "\u0023\u003DqLp_KRsaIEV6vO6n\u002427EHX33lL2C4wHnXV2R_PywbI1I\u003D"; //internal static byte[]
         }
 
-        private static Type type;        //Obfuscated Name for Reflection
-
-        #region TakeDesktopScreenshot
-        internal static HookManager TakeDesktopScreenshotHook;
-
-        public static byte[] TakeDesktopScreenshotTarget()
+        private static Type type;
+        public static Type Type
         {
-            Console.WriteLine("ScreenShot Rekt");
-            Console.WriteLine("ScreenShot Rekt");
-            Console.WriteLine("ScreenShot Rekt");
-            Console.WriteLine("ScreenShot Rekt");
-            Console.WriteLine("ScreenShot Rekt");
-            Console.WriteLine("ScreenShot Rekt");
-            Console.WriteLine("ScreenShot Rekt");
-            Console.WriteLine("ScreenShot Rekt");
-            Console.WriteLine("ScreenShot Rekt");
-            Console.WriteLine("ScreenShot Rekt");
-            Console.WriteLine("ScreenShot Rekt");
-            Console.WriteLine("ScreenShot Rekt");
-            Console.WriteLine("ScreenShot Rekt");
-            return (byte[])null;
+            get
+            {
+                if (type == null)
+                {
+                    type = Global.Osu.GetType(ClassName);
+                }
+                return type;
+            }   
+        }        //Obfuscated Name for Reflection
+
+        public static MethodInfo TakeDesktopScreenshotInfo
+        {
+            get
+            {
+                var value = Type.Method(Methods.TakeDesktopScreenshot);
+                return Type.Method(Methods.TakeDesktopScreenshot, Flags.StaticAnyVisibility); //This is cached
+            }
         }
-        #endregion
+        public delegate byte[] TakeDesktopScreenshotDelegate(); //Keep or remove?
+        public static TakeDesktopScreenshotDelegate TakeDesktopScreenshot;
+
+
 
         public static void Init()
         {
-            type = Global.Osu.GetType(ClassName);
-            var takeDesktopScreenshot = type.GetMethod(Methods.TakeDesktopScreenshot, BindingFlags.NonPublic | BindingFlags.Static);
-            TakeDesktopScreenshotHook = new HookManager(takeDesktopScreenshot, ((Func<byte[]>)TakeDesktopScreenshotTarget).Method);
+            TakeDesktopScreenshot = (TakeDesktopScreenshotDelegate)Delegate.CreateDelegate(typeof (TakeDesktopScreenshotDelegate), TakeDesktopScreenshotInfo);
 
-        }
-
-        public static void InstallHooks()
-        {
-            Console.WriteLine("Detouring Screenshotter");
-            TakeDesktopScreenshotHook.Install();
         }
     }
 }

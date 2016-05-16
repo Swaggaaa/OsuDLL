@@ -23,6 +23,7 @@ using ClassLibrary2.Osu.GameModes.Play;
 using ClassLibrary2.Osu.GameplayElements.Beatmaps;
 using ClassLibrary2.Osu.GameplayElements.Scoring;
 using ClassLibrary2.Osu.Graphics;
+using ClassLibrary2.Osu;
 using ButtonState = Microsoft.Xna.Framework.Input.ButtonState;
 
 namespace ClassLibrary2
@@ -47,23 +48,13 @@ namespace ClassLibrary2
 
         public static bool Started = false;
         private static String ah = null;
+
+        
         static Class1()
         {
            pwzMethodName("Constructor");
         }
 
-        private static HookManager hookTest;
-
-        private static Process[] detourProcess()
-        {
-            Console.WriteLine("Topkeked");
-            var object2 = (Process[])hookTest.CallOriginal(null);
-            foreach (var process in object2)
-            {
-                //Console.WriteLine(process.ProcessName);
-            }
-            return object2;
-        }
         private static int pwzMethodName(String pwzArgument)
         {
             if (Started)
@@ -72,6 +63,7 @@ namespace ClassLibrary2
             }
             InitConsole();
             Console.WriteLine(pwzArgument);
+
            /* Console.WriteLine("Testing");
             try
             {
@@ -153,8 +145,9 @@ namespace ClassLibrary2
                 {
                     throw new Exception("Could not find osu! assembly");
                 }
+                AntiCheat.Instance.InstallHooks();
+
                 InitClasses();
-                Screenshot.InstallHooks();
                 Global.InterProcess = new InterProcessOsu();
                 while (true)
                 {
@@ -173,7 +166,6 @@ namespace ClassLibrary2
                                 {
                                     if (player.IsValid && player.HitObjectManager0.IsValid)
                                     {
-                                        player.InstallHooks();
 
                                         var list = player.HitObjectManager0.HitObjects;
                                         Console.WriteLine("HitObject Count: {0}", list.Count);

@@ -15,7 +15,7 @@ namespace ClassLibrary2.Osu.GameModes.Play
     {
         public const String ClassName = "\u0023\u003DqJOMMiVfXoKIKzCijFD0e1LPJiJCYikVcbnfexQ3_ueU\u003D";
 
-        public struct Instances
+        public struct Members
         {
             public const String player = "\u0023\u003DqbW6U0wGbJEI7G4XkW5s70A\u003D\u003D";
             public const String hitObjectManager = "\u0023\u003DqP7N9vjLG9aQ7RbwgKXCa4tk4WyO5VNRSruo5WWPR0OA\u003D";
@@ -34,7 +34,18 @@ namespace ClassLibrary2.Osu.GameModes.Play
         }
 
 
-        private static Type type;        //Obfuscated Name for Reflection
+        private static Type type;
+        public static Type Type
+        {
+            get
+            {
+                if (type == null)
+                {
+                    type = Global.Osu.GetType(ClassName);
+                }
+                return type;
+            }
+        }       
 
         private static MemberInfo _classObject;
         private static object classObject
@@ -43,11 +54,11 @@ namespace ClassLibrary2.Osu.GameModes.Play
             {
                 if (_classObject == null)
                 {
-                    _classObject = type.GetMember(Instances.player,
+                    _classObject = type.GetMember(Members.player,
                         BindingFlags.NonPublic | BindingFlags.Static).FirstOrDefault();
                     if (_classObject == null)
                     {
-                        return Enums.BadFlags.Clean;
+                        return null;
                     }
                 }
                 var value = Helper.GetValue<object>(_classObject, null);
@@ -71,7 +82,7 @@ namespace ClassLibrary2.Osu.GameModes.Play
             {
                 if (_activeRelax == null)
                 {
-                    _activeRelax = type.GetMember(Instances.RelaxActive,
+                    _activeRelax = type.GetMember(Members.RelaxActive,
                         BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static).FirstOrDefault();
                     if (_activeRelax == null)
                     {
@@ -85,7 +96,7 @@ namespace ClassLibrary2.Osu.GameModes.Play
             {
                 if (_activeRelax == null)
                 {
-                    _activeRelax = type.GetMember(Instances.RelaxActive,
+                    _activeRelax = type.GetMember(Members.RelaxActive,
                         BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static).FirstOrDefault();
                     if (_activeRelax == null)
                     {
@@ -108,7 +119,7 @@ namespace ClassLibrary2.Osu.GameModes.Play
             {
                 if (_activeRelax2 == null)
                 {
-                    _activeRelax2 = type.GetMember(Instances.Relax2Active,
+                    _activeRelax2 = type.GetMember(Members.Relax2Active,
                         BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static).FirstOrDefault();
                     if (_activeRelax2 == null)
                     {
@@ -122,7 +133,7 @@ namespace ClassLibrary2.Osu.GameModes.Play
             {
                 if (_activeRelax2 == null)
                 {
-                    _activeRelax2 = type.GetMember(Instances.Relax2Active,
+                    _activeRelax2 = type.GetMember(Members.Relax2Active,
                         BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static).FirstOrDefault();
                     if (_activeRelax2 == null)
                     {
@@ -145,7 +156,7 @@ namespace ClassLibrary2.Osu.GameModes.Play
             {
                 if (_hitObjectManager == null)
                 {
-                    _hitObjectManager = type.GetMember(Instances.hitObjectManager,
+                    _hitObjectManager = type.GetMember(Members.hitObjectManager,
                         BindingFlags.NonPublic | BindingFlags.Instance).FirstOrDefault();
                     if (_hitObjectManager == null)
                     {
@@ -169,7 +180,7 @@ namespace ClassLibrary2.Osu.GameModes.Play
             {
                 if (_badFlags == null)
                 {
-                    _badFlags = type.GetMember(Instances.BadFlags,
+                    _badFlags = type.GetMember(Members.BadFlags,
                         BindingFlags.NonPublic | BindingFlags.Static).FirstOrDefault();
                     if (_badFlags == null)
                     {
@@ -183,7 +194,7 @@ namespace ClassLibrary2.Osu.GameModes.Play
             {
                 if (_badFlags == null)
                 {
-                    _badFlags = type.GetMember(Instances.BadFlags,
+                    _badFlags = type.GetMember(Members.BadFlags,
                         BindingFlags.NonPublic | BindingFlags.Static).FirstOrDefault();
                     if (_badFlags == null)
                     {
@@ -206,7 +217,7 @@ namespace ClassLibrary2.Osu.GameModes.Play
             {
                 if (_haxCheckCount == null)
                 {
-                    _haxCheckCount = type.GetMember(Instances.HaxCheckCount,
+                    _haxCheckCount = type.GetMember(Members.HaxCheckCount,
                         BindingFlags.NonPublic | BindingFlags.Instance).FirstOrDefault();
                     if (_haxCheckCount == null)
                     {
@@ -221,7 +232,7 @@ namespace ClassLibrary2.Osu.GameModes.Play
             {
                 if (_haxCheckCount == null)
                 {
-                    _haxCheckCount = type.GetMember(Instances.HaxCheckCount,
+                    _haxCheckCount = type.GetMember(Members.HaxCheckCount,
                         BindingFlags.NonPublic | BindingFlags.Instance).FirstOrDefault();
                     if (_haxCheckCount == null)
                     {
@@ -235,91 +246,39 @@ namespace ClassLibrary2.Osu.GameModes.Play
         #endregion
 
 
-        #region CheckFlashLightHax
-        public HookManager checkFlashLightHaxHook;
+        #region Methods
 
-        public void CheckFlashLightHaxTarget()
+        #region CheckFlashLightHax
+
+        public static MethodInfo CheckFlashLightHaxInfo
         {
-           // Console.WriteLine("FBadFlags: {0} {1}", Player.BadFlags, ModManager.CurrentMods);
-            return;
+            get { return Type.Method(Methods.CheckFlashLightHax, Flags.InstanceAnyVisibility); //This is cached
+            }
         }
+
         #endregion
 
         #region HaxCheck
-        public HookManager haxCheckHook;
 
-        public static void HaxCheckTarget(object this0, bool arg)
+        public static MethodInfo HackCheckInfo
         {
-            /*if(this0 != null)
+            get
             {
-                var haxCheckCount = this0.GetFieldValue(Instances.HaxCheckCount);
-                this0.SetFieldValue(Instances.HaxCheckCount, ((int)haxCheckCount) + 1);
-                Console.WriteLine("H1BadFlags: {0} {1}", Player.BadFlags, haxCheckCount);
-            }*/
-            /*if (arg != null)
-            {
-                Console.WriteLine("arg: " + arg.ToString());
-            }*/
-            if (classObject != null)
-            {
-                var kek = HaxCheckCount;
-                HaxCheckCount = kek +1;
-
-                Console.WriteLine("H1BadFlags: {0} {1} {2}", Player.BadFlags, ModManager.CurrentMods, kek);
-
+                return Type.Method(Methods.HaxCheck, Flags.InstanceAnyVisibility); //This is cached
             }
-            //haxCheckHook.Uninstall();
-            //haxCheckHook.OriginalMethodInfo.Invoke(classObject, new object[] {forceFail});
-            //haxCheckHook.Install();
-            //Console.WriteLine("H2BadFlags: {0} {1}", Player.BadFlags, ModManager.CurrentMods);
-            /*Console.WriteLine("HBadFlags: {0} {1}", Player.BadFlags, ModManager.CurrentMods);
-            BadFlags |= BadFlags.IncorrectModValue;*/
-            return;
         }
+
         #endregion
 
+        #endregion
 
-        public static void Init()
-        {
-            type = Global.Osu.GetType(ClassName);
-
-            //_activeRelax = type.GetMember(RelaxActiveInstance, BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static).FirstOrDefault();
-            //_activeRelax2 = type.GetMember(Relax2ActiveInstance, BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static).FirstOrDefault();
-        }
-
-        public void InitMethods()
-        {
-            var checkFlashLightHax = type.GetMethod(Methods.CheckFlashLightHax, BindingFlags.NonPublic | BindingFlags.Instance);
-            checkFlashLightHaxHook = 
-                new HookManager(checkFlashLightHax, CheckFlashLightHaxTarget);
-            
-            var haxCheck = type.GetMethod(Methods.HaxCheck, BindingFlags.NonPublic | BindingFlags.Instance);
-            haxCheckHook =
-                new HookManager(haxCheck, ((Action<object, bool>)HaxCheckTarget).Method);
-            
-
-        }
-
-        public void InstallHooks()
-        {
-            Console.WriteLine("Installing hooks");
-            checkFlashLightHaxHook.Install();
-            haxCheckHook.Install();
-        }
         public Player()
         {
-            Init();
-            InitMethods();
             //_class757_0 = type.GetMember(class757_0Instance, BindingFlags.NonPublic | BindingFlags.Instance).FirstOrDefault();
-
-
-
         }
 
         public void Dispose()
         {
-            checkFlashLightHaxHook.Uninstall();
-            haxCheckHook.Uninstall();
             BadFlags = BadFlags.Clean;
             Console.WriteLine("Disposed...");
 

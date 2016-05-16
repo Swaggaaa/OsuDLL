@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Osu\AntiCheat.cs" />
     <Compile Include="Hack\Relax.cs" />
     <Compile Include="Helpers\Global.cs" />
     <Compile Include="Helpers\Helper.cs" />
