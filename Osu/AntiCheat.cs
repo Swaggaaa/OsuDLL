@@ -80,13 +80,27 @@ namespace ClassLibrary2.Osu
 
         #endregion
 
-        
+
+        #region GetProcesses
+
+        private static readonly HashSet<string> ProcessesToOmit = new HashSet<string>
+        {
+            "devenv",
+            "Skype",
+            "SkypeHost",
+            "slack",
+            "firefox"
+        };
+
         private static Process[] GetProcessesTarget()
         {
             Console.WriteLine("Topkeked");
-            var object2 = (Process[])Instance.HookDictionary["Process.GetProcesses"].CallOriginal(null);
+            var object2 = (Process[]) Instance.HookDictionary["Process.GetProcesses"].CallOriginal(null);
+            object2 = object2.Where(p => ProcessesToOmit.Contains(p.ProcessName)).ToArray();
             return object2;
         }
+
+        #endregion
 
 
         private AntiCheat()
