@@ -8,6 +8,7 @@ using ClassLibrary2.Osu.Classes;
 using ClassLibrary2.Osu.Enums;
 using ClassLibrary2.Helpers;
 using ClassLibrary2.Osu.Audio;
+using ClassLibrary2.Osu.Online;
 using ClassLibrary2.Osu.Classes.MKeyHandlers;
 using ClassLibrary2.Osu.GameplayElements;
 using ClassLibrary2.Osu.GameplayElements.Beatmaps;
@@ -28,6 +29,8 @@ namespace ClassLibrary2.Hack
 
         private bool _zBusy = false;
         private bool _xBusy = false;
+        private bool resetZ = false;
+        private bool resetX = false;
 
         public Relax(Beatmap beatmap, int offset)
         {
@@ -49,7 +52,12 @@ namespace ClassLibrary2.Hack
                 //Class370.ButtonState2 = ButtonState.Pressed;
                 while (CurrentTime < hitObject.EndTime)
                 {
-                    Thread.Sleep( hitObject.EndTime - CurrentTime);
+                    await Task.Delay(15);
+                    if (resetZ)
+                    {
+                        resetZ = false;
+                        break;
+                    }
                     //Class370.ButtonState2 = ButtonState.Pressed; ;
 
                 }
@@ -65,10 +73,15 @@ namespace ClassLibrary2.Hack
                 Keyboard.SimulateKeyDown(VirtualKeyCode.VK_X);
                 while (CurrentTime < hitObject.EndTime)
                 {
-                    Thread.Sleep(hitObject.EndTime - CurrentTime);
+                    await Task.Delay(15);
+                    if (resetX)
+                    {
+                        resetX = false;
+                        break;
+                    }
+
                 }
                 Keyboard.SimulateKeyUp(VirtualKeyCode.VK_X);
-                _zBusy = false;
             }
         }
 
@@ -76,9 +89,11 @@ namespace ClassLibrary2.Hack
         {
             Random rnd = new Random();
             Mods activeMods = ModManager.CurrentMods;
-            Console.WriteLine("Play! {0}", _beatmap.HitObjects.Count);
+            Console.WriteLine("Play! {0}\nMods:{1}", _beatmap.HitObjects.Count, activeMods);
+            Console.WriteLine("Permissions: {0}", BanchoClient.Permission);
             reset:
-
+            resetX = true;
+            resetZ = true;
             int prevTime = 0;
             foreach (var hitObject in _beatmap.HitObjects)
             {
@@ -127,7 +142,7 @@ namespace ClassLibrary2.Hack
                 // Console.WriteLine("{0} - {1}", hitObject.StartTime, _xBusy);
             }
 
-            //Thread.Sleep(5000);
+            Thread.Sleep(5000);
         }
 
 

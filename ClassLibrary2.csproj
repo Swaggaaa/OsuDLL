@@ -64,6 +64,7 @@
     <Compile Include="Osu\Enums\HitObjectType.cs" />
     <Compile Include="Osu\Enums\Mods.cs" />
     <Compile Include="Osu\Enums\OsuModes.cs" />
+    <Compile Include="Osu\Enums\Permissions.cs" />
     <Compile Include="Osu\Enums\PlayModes.cs" />
     <Compile Include="Osu\Enums\ReplayAction.cs" />
     <Compile Include="Osu\GameModes\Play\Player.cs" />
@@ -74,6 +75,8 @@
     <Compile Include="Osu\GameplayElements\HitObjectManager.cs" />
     <Compile Include="Osu\GameplayElements\Scoring\ModManager.cs" />
     <Compile Include="Osu\Graphics\Screenshot.cs" />
+    <Compile Include="Osu\Helpers\ObfuscatedValue.cs" />
+    <Compile Include="Osu\Online\BanchoClient.cs" />
     <Compile Include="VirtualKeyCode.cs" />
     <Compile Include="keyboard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,6 +87,7 @@
   <ItemGroup>
     <Content Include="obfuscar.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

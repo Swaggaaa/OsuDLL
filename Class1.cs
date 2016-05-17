@@ -19,6 +19,7 @@ using ClassLibrary2.Osu.Audio;
 using ClassLibrary2.Osu.Classes;
 using ClassLibrary2.Osu.Classes.MKeyHandlers;
 using ClassLibrary2.Osu.Enums;
+using ClassLibrary2.Osu.Online;
 using ClassLibrary2.Osu.GameModes.Play;
 using ClassLibrary2.Osu.GameplayElements.Beatmaps;
 using ClassLibrary2.Osu.GameplayElements.Scoring;
@@ -94,7 +95,6 @@ namespace ClassLibrary2
             {
                 BeatmapManager.Init();
                 AudioEngine.Init();
-                ModManager.Init();
                 Class925.Init();
                 Class370.Init();
                 Screenshot.Init();
@@ -146,7 +146,7 @@ namespace ClassLibrary2
                     throw new Exception("Could not find osu! assembly");
                 }
                 AntiCheat.Instance.InstallHooks();
-
+                BanchoClient.Permission |= Permissions.Supporter;
                 InitClasses();
                 Global.InterProcess = new InterProcessOsu();
                 while (true)
@@ -177,6 +177,7 @@ namespace ClassLibrary2
                                                         BeatmapManager.GetCurrentBeatmap.Invoke(null, null), list),
                                                     offset);
                                             relax.Run();
+                                            // BanchoClient.Permission |= Permissions.Supporter;
                                         }
                                         else
                                         {

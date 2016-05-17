@@ -15,7 +15,7 @@ namespace ClassLibrary2.Osu.GameModes.Play
     {
         public const String ClassName = "\u0023\u003DqJOMMiVfXoKIKzCijFD0e1LPJiJCYikVcbnfexQ3_ueU\u003D";
 
-        public struct Members
+        public struct Fields
         {
             public const String player = "\u0023\u003DqbW6U0wGbJEI7G4XkW5s70A\u003D\u003D";
             public const String hitObjectManager = "\u0023\u003DqP7N9vjLG9aQ7RbwgKXCa4tk4WyO5VNRSruo5WWPR0OA\u003D";
@@ -54,7 +54,7 @@ namespace ClassLibrary2.Osu.GameModes.Play
             {
                 if (_classObject == null)
                 {
-                    _classObject = type.GetMember(Members.player,
+                    _classObject = type.GetMember(Fields.player,
                         BindingFlags.NonPublic | BindingFlags.Static).FirstOrDefault();
                     if (_classObject == null)
                     {
@@ -82,7 +82,7 @@ namespace ClassLibrary2.Osu.GameModes.Play
             {
                 if (_activeRelax == null)
                 {
-                    _activeRelax = type.GetMember(Members.RelaxActive,
+                    _activeRelax = type.GetMember(Fields.RelaxActive,
                         BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static).FirstOrDefault();
                     if (_activeRelax == null)
                     {
@@ -96,7 +96,7 @@ namespace ClassLibrary2.Osu.GameModes.Play
             {
                 if (_activeRelax == null)
                 {
-                    _activeRelax = type.GetMember(Members.RelaxActive,
+                    _activeRelax = type.GetMember(Fields.RelaxActive,
                         BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static).FirstOrDefault();
                     if (_activeRelax == null)
                     {
@@ -119,7 +119,7 @@ namespace ClassLibrary2.Osu.GameModes.Play
             {
                 if (_activeRelax2 == null)
                 {
-                    _activeRelax2 = type.GetMember(Members.Relax2Active,
+                    _activeRelax2 = type.GetMember(Fields.Relax2Active,
                         BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static).FirstOrDefault();
                     if (_activeRelax2 == null)
                     {
@@ -133,7 +133,7 @@ namespace ClassLibrary2.Osu.GameModes.Play
             {
                 if (_activeRelax2 == null)
                 {
-                    _activeRelax2 = type.GetMember(Members.Relax2Active,
+                    _activeRelax2 = type.GetMember(Fields.Relax2Active,
                         BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static).FirstOrDefault();
                     if (_activeRelax2 == null)
                     {
@@ -156,7 +156,7 @@ namespace ClassLibrary2.Osu.GameModes.Play
             {
                 if (_hitObjectManager == null)
                 {
-                    _hitObjectManager = type.GetMember(Members.hitObjectManager,
+                    _hitObjectManager = type.GetMember(Fields.hitObjectManager,
                         BindingFlags.NonPublic | BindingFlags.Instance).FirstOrDefault();
                     if (_hitObjectManager == null)
                     {
@@ -180,7 +180,7 @@ namespace ClassLibrary2.Osu.GameModes.Play
             {
                 if (_badFlags == null)
                 {
-                    _badFlags = type.GetMember(Members.BadFlags,
+                    _badFlags = type.GetMember(Fields.BadFlags,
                         BindingFlags.NonPublic | BindingFlags.Static).FirstOrDefault();
                     if (_badFlags == null)
                     {
@@ -194,7 +194,7 @@ namespace ClassLibrary2.Osu.GameModes.Play
             {
                 if (_badFlags == null)
                 {
-                    _badFlags = type.GetMember(Members.BadFlags,
+                    _badFlags = type.GetMember(Fields.BadFlags,
                         BindingFlags.NonPublic | BindingFlags.Static).FirstOrDefault();
                     if (_badFlags == null)
                     {
@@ -217,7 +217,7 @@ namespace ClassLibrary2.Osu.GameModes.Play
             {
                 if (_haxCheckCount == null)
                 {
-                    _haxCheckCount = type.GetMember(Members.HaxCheckCount,
+                    _haxCheckCount = type.GetMember(Fields.HaxCheckCount,
                         BindingFlags.NonPublic | BindingFlags.Instance).FirstOrDefault();
                     if (_haxCheckCount == null)
                     {
@@ -232,7 +232,7 @@ namespace ClassLibrary2.Osu.GameModes.Play
             {
                 if (_haxCheckCount == null)
                 {
-                    _haxCheckCount = type.GetMember(Members.HaxCheckCount,
+                    _haxCheckCount = type.GetMember(Fields.HaxCheckCount,
                         BindingFlags.NonPublic | BindingFlags.Instance).FirstOrDefault();
                     if (_haxCheckCount == null)
                     {

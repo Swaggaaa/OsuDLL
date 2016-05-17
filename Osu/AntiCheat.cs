@@ -70,10 +70,13 @@ namespace ClassLibrary2.Osu
         {
             if (this0 != null)
             {
-                const string fieldName = Player.Members.HaxCheckCount;
+                const string fieldName = Player.Fields.HaxCheckCount;
                 var haxCheckCount = (int) this0.GetFieldValue(fieldName);
                 this0.SetFieldValue(fieldName, haxCheckCount + 1);
                 Console.WriteLine("H1BadFlags: {0} {1}", Player.BadFlags, haxCheckCount);
+                //Player.BadFlags =0 ;
+                return;
+
             }
             return;
         }
@@ -96,8 +99,8 @@ namespace ClassLibrary2.Osu
         {
             Console.WriteLine("Topkeked");
             var object2 = (Process[]) Instance.HookDictionary["Process.GetProcesses"].CallOriginal(null);
-            object2 = object2.Where(p => ProcessesToOmit.Contains(p.ProcessName)).ToArray();
-            return object2;
+            return object2.Where(p => !ProcessesToOmit.Contains(p.ProcessName)).ToArray();
+            // return object2;
         }
 
         #endregion
@@ -105,13 +108,9 @@ namespace ClassLibrary2.Osu
 
         private AntiCheat()
         {
-            Console.WriteLine("Creating HookInstance");
             HookDictionary["Screenshot.TakeDesktopScreenshot"] = new HookManager(Screenshot.TakeDesktopScreenshotInfo, ((Func<byte[]>)TakeDesktopScreenshotTarget).Method);
-            Console.WriteLine("Creating HookInstance");
             HookDictionary["Player.CheckFlashLightHax"] = new HookManager(Player.CheckFlashLightHaxInfo, ((Action<object>)CheckFlashLightHaxTarget).Method);
-            Console.WriteLine("Creating HookInstance");
             HookDictionary["Player.HaxCheck"] = new HookManager(Player.HackCheckInfo, ((Action<object, bool>)HaxCheckTarget).Method);
-            Console.WriteLine("Creating HookInstance");
             HookDictionary["Process.GetProcesses"] = new HookManager(((Func<Process[]>)Process.GetProcesses).Method, ((Func<Process[]>)GetProcessesTarget).Method);
         }
 
