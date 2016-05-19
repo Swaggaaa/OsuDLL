@@ -26,7 +26,7 @@ namespace ClassLibrary2.Osu.GameplayElements
                 return (HitObjectType) sender.GetFieldValue(TypeInstance);
             }
         }
-        public int StartTime
+        public int startTime
         {
             get
             {
@@ -34,13 +34,16 @@ namespace ClassLibrary2.Osu.GameplayElements
             }
         }
 
-        public int EndTime
+        public int StartTime;
+
+        public int endTime
         {
             get
             {
                 return (int) sender.GetFieldValue(EndTimeInstance);
             }
         }
+        public int EndTime;
         public int Duration
         {
             get { return EndTime - StartTime; }
@@ -52,6 +55,8 @@ namespace ClassLibrary2.Osu.GameplayElements
 
             sender = classObject;
             type = classObject.GetType();
+            StartTime = startTime;
+            EndTime = endTime;
 
             //Console.WriteLine("hitObject: {0}",this.StartTime);
             /*foreach (var memberInfo in actualType.GetMembers(BindingFlags.NonPublic | BindingFlags.Instance))  

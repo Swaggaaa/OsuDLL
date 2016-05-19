@@ -108,13 +108,13 @@ namespace ClassLibrary2.Hack
             foreach (var hitObject in _beatmap.HitObjects)
             {
 
-
+                hitObject.StartTime += rnd.Next(-_offset, _offset);
                 if (!Global.InterProcess.IsPlaying())
                 {
                     Console.WriteLine("Play Exit ");
                     return;
                 }
-                while (CurrentTime  < hitObject.StartTime + rnd.Next(-_offset, _offset))
+                while (CurrentTime  < hitObject.StartTime)
                 {
                     /*Console.Clear();
                     Console.WriteLine(Class370.ButtonState0);
