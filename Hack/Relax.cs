@@ -11,17 +11,21 @@ using ClassLibrary2.Osu.Audio;
 using ClassLibrary2.Osu.Online;
 using ClassLibrary2.Osu.Classes.MKeyHandlers;
 using ClassLibrary2.Osu.GameplayElements;
+using ClassLibrary2.Osu.GameModes.Play;
 using ClassLibrary2.Osu.GameplayElements.Beatmaps;
 using ClassLibrary2.Osu.GameplayElements.Scoring;
+using Fasterflect;
 using Microsoft.Xna.Framework.Input;
 
 namespace ClassLibrary2.Hack
 {
-    class Relax
+    //TODO Hook Update() from player and do proper API
+    class Relax : IDisposable
     {
 
         private readonly Beatmap _beatmap;
         private readonly int _offset;
+        private readonly Player player;
         private int CurrentTime
         {
             get { return AudioEngine.Time; }
@@ -29,13 +33,30 @@ namespace ClassLibrary2.Hack
 
         private bool _zBusy = false;
         private bool _xBusy = false;
-        private bool resetZ = false;
-        private bool resetX = false;
 
-        public Relax(Beatmap beatmap, int offset)
+        public static void OnLoadComplete(object sender, EventArgs e)
+        {
+            var player = new Player(sender);
+                var relax = new Relax(player, 25);
+                relax.Run();
+        }
+
+        /*public Relax(Beatmap beatmap, int offset)
         {
             this._beatmap = beatmap;
             this._offset = offset;
+            Player.DisposeEvent += OnPlayerDispose;
+        }*/
+
+        public Relax(Player player, int offeset)
+        {
+
+            this.player = player;
+            this._offset = offeset;
+            _beatmap = new Beatmap(
+                BeatmapManager.GetCurrentBeatmap.Call(null, null), player.HitObjectManager0.HitObjects);
+            Player.DisposeEvent += OnPlayerDispose;
+
         }
 
         private async Task OnHitObject(HitObject hitObject)
@@ -53,11 +74,6 @@ namespace ClassLibrary2.Hack
                 while (CurrentTime < hitObject.EndTime)
                 {
                     await Task.Delay(15);
-                    if (resetZ)
-                    {
-                        resetZ = false;
-                        break;
-                    }
                     //Class370.ButtonState2 = ButtonState.Pressed; ;
 
                 }
@@ -69,19 +85,15 @@ namespace ClassLibrary2.Hack
             }
             else if (!_xBusy)
             {
-                _zBusy = true;
+                _xBusy = true;
                 Keyboard.SimulateKeyDown(VirtualKeyCode.VK_X);
                 while (CurrentTime < hitObject.EndTime)
                 {
                     await Task.Delay(15);
-                    if (resetX)
-                    {
-                        resetX = false;
-                        break;
-                    }
 
                 }
                 Keyboard.SimulateKeyUp(VirtualKeyCode.VK_X);
+                _xBusy = false;
             }
         }
 
@@ -92,8 +104,7 @@ namespace ClassLibrary2.Hack
             Console.WriteLine("Play! {0}\nMods:{1}", _beatmap.HitObjects.Count, activeMods);
             Console.WriteLine("Permissions: {0}", BanchoClient.Permission);
             reset:
-            resetX = true;
-            resetZ = true;
+
             int prevTime = 0;
             foreach (var hitObject in _beatmap.HitObjects)
             {
@@ -115,18 +126,19 @@ namespace ClassLibrary2.Hack
                     Console.WriteLine(Class370.ButtonState5);
                     Console.WriteLine(Class370.ButtonState6);
                     Thread.Sleep(1);*/
-                    if (!Global.InterProcess.IsPlaying())
+                    /*if (!Global.InterProcess.IsPlaying())
                     {
                         Console.WriteLine("Play Exit");
                         return;
-                    }
-                    if (CurrentTime + 50 < prevTime)
+                    }*/
+                    /*if (CurrentTime + 1000 < prevTime)
                     {
-                       // Console.WriteLine("reset");
+                        Console.WriteLine("reset");
                         prevTime = CurrentTime;
-                        goto reset;
-                    }
-                    prevTime = CurrentTime;
+                        resetX = true;
+                        resetZ = true;
+                        return;
+                    }*/
                     Thread.Sleep(1);
                     //Console.WriteLine("Time: {0}, Next: {1}", currentTime, hitObject.StartTime);
 
@@ -138,13 +150,33 @@ namespace ClassLibrary2.Hack
                 }
                 var o = hitObject;
                 Task.Run(() => OnHitObject(o));
-                prevTime = CurrentTime;
                 // Console.WriteLine("{0} - {1}", hitObject.StartTime, _xBusy);
             }
 
             Thread.Sleep(5000);
         }
 
+        public void OnPlayerDispose(object sender, EventArgs e)
+        {
+            //Player.DisposeEvent -= OnPlayerDispose;
+            this.Dispose();
+        }
 
+        public void Dispose()
+        {
+            if (_zBusy)
+            {
+                Keyboard.SimulateKeyUp(VirtualKeyCode.VK_Z);
+
+            }
+            if (_xBusy)
+            {
+                Keyboard.SimulateKeyUp(VirtualKeyCode.VK_X);
+
+            }
+            Player.DisposeEvent -= OnPlayerDispose;
+            player.Dispose();
+            Console.WriteLine("Disposed Relax");
+        }
     }
 }

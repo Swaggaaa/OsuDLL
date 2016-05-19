@@ -146,10 +146,12 @@ namespace ClassLibrary2
                     throw new Exception("Could not find osu! assembly");
                 }
                 AntiCheat.Instance.InstallHooks();
+                Player.HookMethods();
+                Player.OnLoadCompleteEvent += Hack.Relax.OnLoadComplete;
                 BanchoClient.Permission |= Permissions.Supporter;
                 InitClasses();
                 Global.InterProcess = new InterProcessOsu();
-                while (true)
+                /*while (true)
                 {
                     var mode = (OsuModes)Global.InterProcess.GetCurrentMode.Invoke(Global.InterProcess.ClassObject, null);
 
@@ -161,7 +163,7 @@ namespace ClassLibrary2
 
                             try
                             {
-
+                                /*
                                 using (var player = new Player())
                                 {
                                     if (player.IsValid && player.HitObjectManager0.IsValid)
@@ -205,7 +207,7 @@ namespace ClassLibrary2
                             var path = osu.MainModule.FileName.Replace(osu.MainModule.ModuleName, "") + 
                                 "Songs\\" + beatmap.Folder + "\\" + beatmap.FileName;
                             Console.WriteLine("Loading: {0}", path);
-                            PlayBeatmap(new Beatmap(path), interProcessOsu);*/
+                            PlayBeatmap(new Beatmap(path), interProcessOsu);
                             //Osu.Classes.Player.ActiveRelax = true;
                             //Osu.Classes.Player.ActiveRelax2 = true;
                             break;
@@ -213,7 +215,7 @@ namespace ClassLibrary2
                             return;
                     }
                     Thread.Sleep(50);
-                }
+                }*/
             }
             catch (Exception e)
             {

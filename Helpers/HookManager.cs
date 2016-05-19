@@ -124,6 +124,7 @@ namespace ClassLibrary2.Helpers
             Uninstall();
             object value = null;
             //var test = OriginalMethodInfo.DelegateForCallMethod();
+
             value = OriginalMethodInfo.Call(this0, args);
             //value = OriginalMethodInfo.Invoke(this0, args.Length == 0 ? null : args);
             Install();

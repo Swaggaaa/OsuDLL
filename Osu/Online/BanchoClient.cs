@@ -46,10 +46,7 @@ namespace ClassLibrary2.Osu.Online
             }
             set
             {
-                Console.WriteLine("Permission Set: {0}", value);
                 _permission.SetValue(value);
-                Console.WriteLine("Permission Settted: {0}", Permission);
-
             }
         }
 

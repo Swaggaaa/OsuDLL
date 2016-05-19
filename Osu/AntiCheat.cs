@@ -66,13 +66,13 @@ namespace ClassLibrary2.Osu
             return;
         }
 
-        public static void HaxCheckTarget(object this0, bool arg)
+        public static void HaxCheckTarget(object sender, bool arg)
         {
-            if (this0 != null)
+            if (sender != null)
             {
-                const string fieldName = Player.Fields.HaxCheckCount;
-                var haxCheckCount = (int) this0.GetFieldValue(fieldName);
-                this0.SetFieldValue(fieldName, haxCheckCount + 1);
+                //const string fieldName = Player.Fields.HaxCheckCount;
+                var haxCheckCount = Player.GetHaxCheckCount(sender);
+                Player.SetHaxCheckCount(sender, haxCheckCount + 1);
                 Console.WriteLine("H1BadFlags: {0} {1}", Player.BadFlags, haxCheckCount);
                 //Player.BadFlags =0 ;
                 return;
