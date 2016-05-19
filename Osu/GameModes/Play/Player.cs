@@ -288,7 +288,7 @@ namespace ClassLibrary2.Osu.GameModes.Play
         }
         private static void OnDispose(object sender, bool disposing)
         {
-            if (DisposeEvent != null) DisposeEvent?.Invoke(sender, EventArgs.Empty);
+            if (DisposeEvent != null) DisposeEvent.Invoke(sender, EventArgs.Empty);
             HookDictionary["Dispose"].CallOriginal(sender, disposing);
 
             return;
