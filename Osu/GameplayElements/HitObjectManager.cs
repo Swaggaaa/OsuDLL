@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using ClassLibrary2.Helpers;
 using ClassLibrary2.Osu.Classes;
+using Fasterflect;
 
 namespace ClassLibrary2.Osu.GameplayElements
 {
@@ -34,7 +35,14 @@ namespace ClassLibrary2.Osu.GameplayElements
                     }
                 }
                 var list = Helper.GetValue<object>(_hitObjects, actualObject) as IList;
-                return (from object value in list select new HitObject(value)).ToList();
+                List<HitObject> m = new List<HitObject>();
+                foreach (var item in list)
+                {
+                    //Console.WriteLine(item.GetFieldValue(HitObject.StartTimeInstance));
+                    m.Add(new HitObject(item));
+                }
+
+                return m;
             }
         }
 

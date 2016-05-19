@@ -65,13 +65,12 @@ namespace ClassLibrary2.Hack
 	        {
                 HitObjectHandler(null, hitObject);
 	        }*/
-            hitObject.EndTime += 40;
             if (!_zBusy)
             {
                 _zBusy = true;
                 Keyboard.SimulateKeyDown(VirtualKeyCode.VK_Z);
                 //Class370.ButtonState2 = ButtonState.Pressed;
-                while (CurrentTime < hitObject.EndTime)
+                while (CurrentTime < hitObject.EndTime + 40)
                 {
                     await Task.Delay(15);
                     //Class370.ButtonState2 = ButtonState.Pressed; ;
@@ -87,7 +86,7 @@ namespace ClassLibrary2.Hack
             {
                 _xBusy = true;
                 Keyboard.SimulateKeyDown(VirtualKeyCode.VK_X);
-                while (CurrentTime < hitObject.EndTime)
+                while (CurrentTime < hitObject.EndTime + 40)
                 {
                     await Task.Delay(15);
 

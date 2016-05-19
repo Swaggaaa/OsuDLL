@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using ClassLibrary2.Helpers;
 using ClassLibrary2.Osu.Enums;
+using Fasterflect;
 
 namespace ClassLibrary2.Osu.GameplayElements
 {
@@ -15,91 +16,31 @@ namespace ClassLibrary2.Osu.GameplayElements
         public const String StackInstance = "\u0023\u003DqxZdyo0TkMAS4FccK9r7rpw\u003D\u003D";
 
         private static Type type;        //Obfuscated Name for Reflection
-        private static object actualObject;        //Obfuscated Name for Reflection
-        public bool IsValid
-        {
-            get { return actualObject != null; }
-        }
+        public object sender;        //Obfuscated Name for Reflection
 
-        private static MemberInfo _unk;
 
-        private int unkVar
+        public HitObjectType Type
         {
             get
             {
-                if (_unk == null)
-                {
-                    _unk = type.GetMember(unkInstance,
-                    BindingFlags.Public | BindingFlags.Instance).FirstOrDefault();
-                    if (_type == null)
-                    {
-                        return 1;
-                    }
-                }
-                return Helper.GetValue<int>(_unk, actualObject);
+                return (HitObjectType) sender.GetFieldValue(TypeInstance);
             }
         }
-        public int UnkVar;
-
-
-        private static MemberInfo _type;
-        private HitObjectType hitObjectType
+        public int StartTime
         {
             get
             {
-                if (_type == null)
-                {
-                    _type = type.GetMember(TypeInstance,
-                    BindingFlags.Public | BindingFlags.Instance).FirstOrDefault();
-                    if (_type == null)
-                    {
-                        return HitObjectType.None;
-                    }
-                }
-                return Helper.GetValue<HitObjectType>(_type, actualObject);
+                return (int) sender.GetFieldValue(StartTimeInstance);
             }
         }
 
-        public HitObjectType HitObjectType;
-
-        private static MemberInfo _startTime;
-        private int startTime
+        public int EndTime
         {
             get
             {
-                if (_startTime == null)
-                {
-                    _startTime = type.GetMember(StartTimeInstance,
-                    BindingFlags.Public | BindingFlags.Instance).FirstOrDefault();
-                    if (_startTime == null)
-                    {
-                        return -1;
-                    }
-                }
-                return Helper.GetValue<int>(_startTime, actualObject);
+                return (int) sender.GetFieldValue(EndTimeInstance);
             }
         }
-        public int StartTime;
-
-        private static MemberInfo _endTime;
-        private int endTime
-        {
-            get
-            {
-                if (_endTime == null)
-                {
-                    _endTime = type.GetMember(EndTimeInstance,
-                    BindingFlags.Public | BindingFlags.Instance).FirstOrDefault();
-                    if (_endTime == null)
-                    {
-                        return -1;
-                    }
-                }
-                return Helper.GetValue<int>(_endTime, actualObject);
-            }
-        }
-
-        public int EndTime;
         public int Duration
         {
             get { return EndTime - StartTime; }
@@ -109,13 +50,9 @@ namespace ClassLibrary2.Osu.GameplayElements
         {
             if (classObject == null) return;
 
-            actualObject = classObject;
+            sender = classObject;
             type = classObject.GetType();
 
-            UnkVar = unkVar;
-            this.HitObjectType = hitObjectType;
-            StartTime = startTime;
-            EndTime = endTime;
             //Console.WriteLine("hitObject: {0}",this.StartTime);
             /*foreach (var memberInfo in actualType.GetMembers(BindingFlags.NonPublic | BindingFlags.Instance))  
             {
