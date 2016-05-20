@@ -102,9 +102,7 @@ namespace ClassLibrary2.Hack
             Mods activeMods = ModManager.CurrentMods;
             Console.WriteLine("Play! {0}\nMods:{1}", _beatmap.HitObjects.Count, activeMods);
             Console.WriteLine("Permissions: {0}", BanchoClient.Permission);
-            reset:
 
-            int prevTime = 0;
             foreach (var hitObject in _beatmap.HitObjects)
             {
 
