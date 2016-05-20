@@ -33,6 +33,7 @@ namespace ClassLibrary2.Hack
 
         private bool _zBusy = false;
         private bool _xBusy = false;
+        private bool dispose = false;
 
         public static void OnLoadComplete(object sender, EventArgs e)
         {
@@ -73,6 +74,10 @@ namespace ClassLibrary2.Hack
                 while (CurrentTime < hitObject.EndTime + 40)
                 {
                     await Task.Delay(15);
+                    if (dispose)
+                    {
+                        break;
+                    }
                     //Class370.ButtonState2 = ButtonState.Pressed; ;
 
                 }
@@ -89,6 +94,10 @@ namespace ClassLibrary2.Hack
                 while (CurrentTime < hitObject.EndTime + 40)
                 {
                     await Task.Delay(15);
+                    if (dispose)
+                    {
+                        break;
+                    }
 
                 }
                 Keyboard.SimulateKeyUp(VirtualKeyCode.VK_X);
@@ -107,13 +116,13 @@ namespace ClassLibrary2.Hack
             {
 
                 hitObject.StartTime += rnd.Next(-_offset, _offset);
-                if (!Global.InterProcess.IsPlaying())
-                {
-                    Console.WriteLine("Play Exit ");
-                    return;
-                }
                 while (CurrentTime  < hitObject.StartTime)
                 {
+
+                    if (dispose)
+                    {
+                        return;
+                    }
                     /*Console.Clear();
                     Console.WriteLine(Class370.ButtonState0);
                     Console.WriteLine(Class370.ButtonState1);
@@ -150,27 +159,17 @@ namespace ClassLibrary2.Hack
                 // Console.WriteLine("{0} - {1}", hitObject.StartTime, _xBusy);
             }
 
-            Thread.Sleep(5000);
         }
 
         public void OnPlayerDispose(object sender, EventArgs e)
         {
+            dispose = true;
             //Player.DisposeEvent -= OnPlayerDispose;
             this.Dispose();
         }
 
         public void Dispose()
         {
-            if (_zBusy)
-            {
-                Keyboard.SimulateKeyUp(VirtualKeyCode.VK_Z);
-
-            }
-            if (_xBusy)
-            {
-                Keyboard.SimulateKeyUp(VirtualKeyCode.VK_X);
-
-            }
             Player.DisposeEvent -= OnPlayerDispose;
             player.Dispose();
             Console.WriteLine("Disposed Relax");
