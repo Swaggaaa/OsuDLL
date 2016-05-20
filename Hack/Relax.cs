@@ -40,6 +40,7 @@ namespace ClassLibrary2.Hack
             var player = new Player(sender);
                 var relax = new Relax(player, 25);
                 relax.Run();
+            
         }
 
         /*public Relax(Beatmap beatmap, int offset)

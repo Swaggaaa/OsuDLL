@@ -53,38 +53,51 @@ namespace ClassLibrary2
         
         static Class1()
         {
-           pwzMethodName("Constructor");
+                DllMain("Constructor");
         }
 
-        private static int pwzMethodName(String pwzArgument)
+        [Obfuscation]
+        private static int DllMain(String pwzArgument)
         {
             if (Started)
             {
+                Console.WriteLine("Second function call " + pwzArgument);
                 return 1;
             }
             InitConsole();
             Console.WriteLine(pwzArgument);
 
-           /* Console.WriteLine("Testing");
-            try
-            {
-                hookTest = new HookManager(typeof(Process).GetMethod("GetProcesses", new Type[] { }), typeof(ClassLibrary2.Class1).GetMethod("detourProcess", BindingFlags.Static | BindingFlags.NonPublic));
-                hookTest.CheckBytes();
-                Console.WriteLine("Install Hook");
-                hookTest.Install();
-                Console.WriteLine("Installed Hook");
-                hookTest.CheckBytes();
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception.Message);   
-                throw;
-            }*/
+            /* Console.WriteLine("Testing");
+             try
+             {
+                 hookTest = new HookManager(typeof(Process).GetMethod("GetProcesses", new Type[] { }), typeof(ClassLibrary2.Class1).GetMethod("detourProcess", BindingFlags.Static | BindingFlags.NonPublic));
+                 hookTest.CheckBytes();
+                 Console.WriteLine("Install Hook");
+                 hookTest.Install();
+                 Console.WriteLine("Installed Hook");
+                 hookTest.CheckBytes();
+             }
+             catch (Exception exception)
+             {
+                 Console.WriteLine(exception.Message);   
+                 throw;
+             }*/
 
 
             ah = pwzArgument;
             Started = true;
-            new Thread(hack).Start();
+            try
+            {
+                //var t = new Thread(hack);
+                //t.Start();
+                Task.Run((Action)hack);
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
             return 1;
         }
 
@@ -123,10 +136,11 @@ namespace ClassLibrary2
             Console.WriteLine("{0} - {1}", Process.GetCurrentProcess().MainModule.FileName, ah);
         }
 
-        static void hack()
+        async static void hack()
         {
 
             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
+            Console.WriteLine("Looking for osu");
             foreach (var a in AppDomain.CurrentDomain.GetAssemblies())
             {
                 Console.WriteLine(a.FullName);
@@ -137,8 +151,9 @@ namespace ClassLibrary2
                     break;
                 }
             }
+            Console.WriteLine("Finished looking");
 
-            
+
             try
             {
                 if (Global.Osu == null)
