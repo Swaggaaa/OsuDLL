@@ -17,7 +17,8 @@ namespace ClassLibrary2.Helpers
         private IntPtr target;
         private byte[] originalAsm = new byte[7];
 
-        public MethodInfo OriginalMethodInfo;
+        public MethodBase OriginalMethodInfo;
+        public bool isConstructor = false;
         /*public Type ClassType = null;
 
             private object classObject;
@@ -43,6 +44,12 @@ namespace ClassLibrary2.Helpers
             PrepareHook(@from, to);
 
         }
+        public HookManager(ConstructorInfo from, MethodInfo to)
+        {
+            isConstructor = true;
+            PrepareHook(@from, to);
+
+        }
 
         public HookManager(MethodInfo from, Action to)
         {
@@ -54,7 +61,7 @@ namespace ClassLibrary2.Helpers
             return new HookManager(@from, to.Method);
         }
 
-        private void PrepareHook(MethodInfo from, MethodInfo to, object classObject = null)
+        private void PrepareHook(MethodBase from, MethodInfo to, object classObject = null)
         {
             //Compile/JIT target method into asm
             if (@from == null)
@@ -119,13 +126,22 @@ namespace ClassLibrary2.Helpers
             }
         }
 
-        public object CallOriginal(object this0, params object[] args)
+        public object CallOriginal(object sender, params object[] args)
         {
             Uninstall();
             object value = null;
             //var test = OriginalMethodInfo.DelegateForCallMethod();
 
-            value = OriginalMethodInfo.Call(this0, args);
+            if (isConstructor)
+            {
+                value = (OriginalMethodInfo).Invoke(sender, args);
+            }
+            else
+            {
+                value = ((MethodInfo) OriginalMethodInfo).Call(sender, args);
+            }
+
+
             //value = OriginalMethodInfo.Invoke(this0, args.Length == 0 ? null : args);
             Install();
             return value;

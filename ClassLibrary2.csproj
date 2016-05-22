@@ -74,6 +74,7 @@
     <Compile Include="Osu\GameplayElements\HitObject.cs" />
     <Compile Include="Osu\GameplayElements\HitObjectManager.cs" />
     <Compile Include="Osu\GameplayElements\Scoring\ModManager.cs" />
+    <Compile Include="Osu\GameplayElements\Scoring\Score.cs" />
     <Compile Include="Osu\Graphics\Screenshot.cs" />
     <Compile Include="Osu\Helpers\ObfuscatedValue.cs" />
     <Compile Include="Osu\Online\BanchoClient.cs" />

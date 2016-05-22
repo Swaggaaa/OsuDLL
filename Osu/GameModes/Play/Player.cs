@@ -201,7 +201,7 @@ namespace ClassLibrary2.Osu.GameModes.Play
                         return;
                     }
                 }
-                 Helper.SetValue(_badFlags, BadFlags.IncorrectModValue);
+                 Helper.SetValue(_badFlags, value);
             }
         }
 

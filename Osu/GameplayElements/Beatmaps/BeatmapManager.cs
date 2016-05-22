@@ -13,7 +13,11 @@ namespace ClassLibrary2.Osu.GameplayElements.Beatmaps
         //public static String currentBeatMap = "\u0023\u003DqGFsRldoLa9LVFRXsJjNgkw\u003D\u003D";
 
         //Methods
-        public static String CurrentBeatmapMethod = "\u0023\u003DqgyWBZYX9JBizxOQPvK8A7A\u003D\u003D";
+        struct Methods
+        {
+            public const String DatabaseSerialize = "\u0023\u003Dqn32KQ5r\u0024MA2Mllut29c1zXP3lSYV3dJLSOH5wF7XfBQ\u003D";
+            public const String CurrentBeatmap = "\u0023\u003DqgyWBZYX9JBizxOQPvK8A7A\u003D\u003D";
+        }
 
 
         private static Type type;
@@ -40,7 +44,7 @@ namespace ClassLibrary2.Osu.GameplayElements.Beatmaps
         public static void Init()
         {
             type = Global.Osu.GetType(ClassName);
-            GetCurrentBeatmap = type.GetMethod(CurrentBeatmapMethod, BindingFlags.NonPublic | BindingFlags.Static);
+            GetCurrentBeatmap = type.GetMethod(Methods.CurrentBeatmap, BindingFlags.NonPublic | BindingFlags.Static);
         }
 
         public static MethodInfo GetCurrentBeatmap;
