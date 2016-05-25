@@ -9,9 +9,9 @@ using Fasterflect;
 
 namespace ClassLibrary2.Osu.GameplayElements
 {
-    class HitObjectManager //Class757
-    {
-        public const String HitObjectsInstance = "\u0023\u003Dqy1b045GbJfvjolRk4ITPmw\u003D\u003D";
+    class HitObjectManager //Hit Object -> below vector2
+    {// \u0023\u003Dqmc6\u0024nA8Oo9wZQCdXAYORdR3o5obVc7pyutyi8MvOgXdme3xCyCriK8MJvAuh\u0024u3D 
+        public const String HitObjectsInstance = "\u0023\u003Dq3TLrX5BR89OIekfV_OYofQ\u003D\u003D"; //Probably a primeira mas nao tenho a certeza :/
         public const String HitObjectInstance = "\u0023\u003DqZWummuknydgX679Sisqk9w\u003D\u003D";
         private object actualObject;
         private Type actualType;

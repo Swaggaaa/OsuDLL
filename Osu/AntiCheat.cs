@@ -108,7 +108,7 @@ namespace ClassLibrary2.Osu
 
         private AntiCheat()
         {
-            HookDictionary["Screenshot.TakeDesktopScreenshot"] = new HookManager(Screenshot.TakeDesktopScreenshotInfo, ((Func<byte[]>)TakeDesktopScreenshotTarget).Method);
+            //HookDictionary["Screenshot.TakeDesktopScreenshot"] = new HookManager(Screenshot.TakeDesktopScreenshotInfo, ((Func<byte[]>)TakeDesktopScreenshotTarget).Method);
             HookDictionary["Player.CheckFlashLightHax"] = new HookManager(Player.CheckFlashLightHaxInfo, ((Action<object>)CheckFlashLightHaxTarget).Method);
             HookDictionary["Player.HaxCheck"] = new HookManager(Player.HackCheckInfo, ((Action<object, bool>)HaxCheckTarget).Method);
             HookDictionary["Process.GetProcesses"] = new HookManager(((Func<Process[]>)Process.GetProcesses).Method, ((Func<Process[]>)GetProcessesTarget).Method);

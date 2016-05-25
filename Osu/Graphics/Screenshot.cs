@@ -11,7 +11,7 @@ namespace ClassLibrary2.Osu.Graphics
 {
     public static class Screenshot
     {
-        public const String ClassName = "\u0023\u003Dq9kuZAhBjpwaIdJRoNa4r9yqVMbiHH6PQP2dcbV5WBzs\u003D";
+        public const String ClassName = "\u0023\u003Dqb8P_\u0024avevToHFVHXyr_l3_Cxn7Vdu2F1g4OFlht27sY\u003D";
 
         public struct Members
         {

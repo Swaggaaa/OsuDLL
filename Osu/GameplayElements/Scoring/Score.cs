@@ -18,11 +18,11 @@ namespace ClassLibrary2.Osu.GameplayElements.Scoring
     class Score
     {
         #region Reflection
-        public const String ClassName = "\u0023\u003DqNJb1eF7vlmg2j14fJqafMgMbIywZPbHb2\u0024p3xop4UO30flqrjMWTy_mZweU6li3J";
+        public const String ClassName = "\u0023\u003DqLixFye7RQWlLiuGT\u0024wLxgrqUhXSJIDMQqwwP7dExuHx7w\u0024dmqmWyZ22i_i7SE7Ts"; //Player circa 123
 
         public struct Methods
         {
-            public const string submit = "\u0023\u003DqVPEG218TMN5EP\u0024UbxdtadQ\u003D\u003D"; //        private void submit(object sender, DoWorkEventArgs e)
+            public const string submit = "\u0023\u003Dq6eYAkzsEd9eLVxTMNLhoVA\u003D\u003D"; //        private void submit(object sender, DoWorkEventArgs e)
         }
 
         private static Type type;

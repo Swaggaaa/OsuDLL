@@ -8,10 +8,10 @@ using Fasterflect;
 
 namespace ClassLibrary2.Osu.Helpers
 {
-    class ObfuscatedValue<T>
+    class ObfuscatedValue<T> //Can be found in many places EG:  ModManager
     {
-        private const string GetMethod = "\u0023\u003DqPopUZdt\u0024MElxJY8Yofx32Q\u003D\u003D";
-        private const string SetMethod = "\u0023\u003Dq4II3BhqaH310bQ3TR0JAuA\u003D\u003D";
+        private const string GetMethod = "\u0023\u003Dq5kBTJ8uV\u00248JYZw9nlNqOnw\u003D\u003D"; //Circa line 65
+        private const string SetMethod = "\u0023\u003Dql6\u0024bdLn\u0024DYwIMMc9APJn9g\u003D\u003D"; //Below ^ 
 
         public object this0;
         public ObfuscatedValue(object this0)

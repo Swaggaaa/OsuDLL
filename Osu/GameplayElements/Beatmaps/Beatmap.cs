@@ -8,7 +8,7 @@ using ClassLibrary2.Osu.Classes;
 
 namespace ClassLibrary2.Osu.GameplayElements.Beatmaps
 {
-    public class Beatmap //GClass257 
+    public class Beatmap //GClass257 -- Outdated (Don't need?)
     {
 
         public const String ClassName = "\u0023\u003Dq9Q5oSBMb0Kcd34NJO8LjuVCVx_e2WHcf5En68SfIh1hqXEXq4uWZUXcvflMy1IKJ";
@@ -24,7 +24,7 @@ namespace ClassLibrary2.Osu.GameplayElements.Beatmaps
         public static String checksum = "\u0023\u003Dq2zAC4K6oAvCepAgdN7as0gwVJ5phX_w0UtETo9OFIFk\u003D";
         public static String Artist = "\u0023\u003Dq9OV9pWJyPbZXgj_6\u0024LeL8g\u003D\u003D";
         public static String Name = "\u0023\u003DqcAQ5H2XRP6KkZn0eQCzOvw";
-        //GClass257
+        //GClass257 - Outdated
         public const String FolderInstance = "\u0023\u003DqSumd7AfqlXlYqfo0qvnpqcrWA0Pa7EpGSsrLD5VCqbs\u003D";
         public const String FileNameInstance = "\u0023\u003Dq8cO7M3\u00249keDAiTbErtwcvA\u003D\u003D";
         public const String AudioFileInstance = "\u0023\u003DqWXlCZapyXCoLBKBwriHs3g\u003D\u003D";

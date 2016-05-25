@@ -10,13 +10,13 @@ using Fasterflect;
 
 namespace ClassLibrary2.Osu.Online
 {
-    static class BanchoClient
+    static class BanchoClient //Player Circa 529 Check Cleaned for reference
     {
-        public const string ClassName = "\u0023\u003DqAdGpN_Uh8unAQNX4Yc3X9b0FnwoORxK3c0r2EUnYmnQ\u003D";
+        public const string ClassName = "\u0023\u003DqIxN4vAwz0yoCdOQW4M_cMZsoUCTpSTqHvYu4yIx_izU\u003D";
 
         public struct Fields
         {
-            public const string Permission = "\u0023\u003DqXVw3PA\u0024wsnn6eSIpwQBdsg\u003D\u003D";
+            public const string Permission = "\u0023\u003Dqj0EGm9y_PvqIc8E92rXSgA\u003D\u003D";
         }
 
         #region Type

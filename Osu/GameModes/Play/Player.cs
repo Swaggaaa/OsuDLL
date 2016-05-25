@@ -29,26 +29,26 @@ namespace ClassLibrary2.Osu.GameModes.Play
         public static Dictionary<string, HookManager> HookDictionary = new Dictionary<string, HookManager>();
 
         #region Reflection
-        public const String ClassName = "\u0023\u003DqJOMMiVfXoKIKzCijFD0e1LPJiJCYikVcbnfexQ3_ueU\u003D";
+        public const String ClassName = "\u0023\u003DqSlWqg3cfqJsfZMmenE72gTkrz6nscXy\u0024UiWgJV5mTcc\u003D";
 
         public struct Fields
         {
-            public const String player = "\u0023\u003DqbW6U0wGbJEI7G4XkW5s70A\u003D\u003D";
-            public const String hitObjectManager = "\u0023\u003DqP7N9vjLG9aQ7RbwgKXCa4tk4WyO5VNRSruo5WWPR0OA\u003D";
-            public const String RelaxActive = "\u0023\u003DqrQzHW7AFskWPCYLOGV9mUw\u003D\u003D";
-            public const String Relax2Active = "\u0023\u003Dq2e6Wqswux2IZfO98e1r1gA\u003D\u003D";
-            public const String BadFlags = "\u0023\u003DqfhXu7CKFrOWNlffGKHD_xA\u003D\u003D";
-            public const String HaxCheckCount = "\u0023\u003Dqvm3yXMmUs5JK7WvfV1wOrQ\u003D\u003D";
+            public const String player = "\u0023\u003Dq_cmKLagmWsTVBRRJvYnOBg\u003D\u003D"; //Line 47
+            public const String RelaxActive = "\u0023\u003DqZ8ckBsDksNaTFmNVXVO07g\u003D\u003D"; //Line 57
+            public const String Relax2Active = "\u0023\u003DqKpA4QhwoCZU7sN4F05q8cg\u003D\u003D"; //Line 58
+            public const String hitObjectManager = "\u0023\u003Dq0zeis057NV5Rh4S9MV_OGF1JCTM5_NHXZXnbTosFcJk\u003D"; //Line 75
+            public const String BadFlags = "\u0023\u003DqhQznIpd\u0024av\u0024N63tkWTlHjg\u003D\u003D"; //Line 159
+            public const String HaxCheckCount = "\u0023\u003DqtpEFiR4izLciG9jsqPj0bw\u003D\u003D"; //Line 166
         }
 
         public struct Methods
         {
-            public const String CheckFlashLightHax = "\u0023\u003Dqs4Kl4qjkJXjyL5WEDJP3OI2iWuR\u0024P83rRSqPYzleoEI\u003D"; //Private void
-            public const String HaxCheck = "\u0023\u003DqXL1QBYJXP8Q4QjEk0A84ng\u003D\u003D"; //Internal void (bool ForceFail)
-            public const String HaxCheckAudio = "\u0023\u003DqoVYhf\u0024JZKjXUIGitB5qyhg\u003D\u003D"; //Private void
-            public const String HaxCheckMouse = "\u0023\u003DqGXTUKI67bvCUeoRkWXkNgw\u003D\u003D"; //Internal void
-            public const String OnLoadComplete = "\u0023\u003Dq7IMq9LD6_RwB1EJ271IoHw\u003D\u003D"; //Protected virtual bool OnLoadComplete(bool success)
-            public const String Dispose = "\u0023\u003DqMf43QgjtH5_CUsI0nMjAzg\u003D\u003D"; //protected override void Dispose(bool disposing)
+            public const String OnLoadComplete = "\u0023\u003Dq\u0024V\u002489d4X6fsuDtcm0DAfPg\u003D\u003D"; //Protected virtual bool OnLoadComplete(bool success) - Circa Line 577
+            public const String CheckFlashLightHax = "\u0023\u003Dqz1ZT8ZVf1YAT0UyJg2NVecg3VM5n52QZSV81oXhIrv4\u003D"; //Private void Search for PlayModes.Taiko: Circa Line 3206
+            public const String HaxCheck = "\u0023\u003DqjrrNPYyYOByILkFjWTjBKg\u003D\u003D"; //Internal void (bool ForceFail) Second Function After ^
+            public const String HaxCheckAudio = "\u0023\u003DqMKUU6FDxfAzDWGFi2jpApQ\u003D\u003D"; //Private void - Right after ^
+            public const String HaxCheckMouse = "\u0023\u003DqPDMkb18ASxUip2dzrnSi0w\u003D\u003D"; //Internal static void (Vector2, Vector2) Right after ^
+            public const String Dispose = "\u0023\u003Dq3_5x0YAbglIR\u0024BhglarPtw\u003D\u003D"; //protected override void Dispose(bool disposing)
         }
         private static Type type;
         public static Type Type

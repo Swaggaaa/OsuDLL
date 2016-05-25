@@ -8,21 +8,21 @@ namespace ClassLibrary2.Osu.GameplayElements.Beatmaps
     static class BeatmapManager //class1274
     {
 
-        public static String ClassName = "\u0023\u003DqVcCVm8f96\u0024o5uKQDK7Lec_aGXOx6idDh8pihPm_nn43W4cnQ9X4JhAjhaA5WK1oN";
+        public static String ClassName = "\u0023\u003DqlqRriC_uvERTBApxxSjfjRX3tAMhvJd5Pruq5_O51suGtY6xTzez8tjn0aotcg02";
         //Members
         //public static String currentBeatMap = "\u0023\u003DqGFsRldoLa9LVFRXsJjNgkw\u003D\u003D";
 
         //Methods
         struct Methods
         {
-            public const String DatabaseSerialize = "\u0023\u003Dqn32KQ5r\u0024MA2Mllut29c1zXP3lSYV3dJLSOH5wF7XfBQ\u003D";
-            public const String CurrentBeatmap = "\u0023\u003DqgyWBZYX9JBizxOQPvK8A7A\u003D\u003D";
+            //public const String DatabaseSerialize = "\u0023\u003Dqn32KQ5r\u0024MA2Mllut29c1zXP3lSYV3dJLSOH5wF7XfBQ\u003D";
+            public const String CurrentBeatmap = "\u0023\u003DqjC\u0024BX0mXG5znGpS65nNNkw\u003D\u003D";
         }
 
 
         private static Type type;
 
-        public static String Beatmap0Instance = "\u0023\u003DqPwK9UwaIwuCjfVv\u0024ilB5wg\u003D\u003D";
+        public static String Beatmap0Instance = "\u0023\u003Dqxfn\u00243evVf9ot53ih2t5\u00242Q\u003D\u003D";
         private static MemberInfo _currentBeatmap0;
         public static object CurrentBeatmap0
         {

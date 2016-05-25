@@ -13,7 +13,7 @@ namespace ClassLibrary2.Osu.GameplayElements.Scoring
 {
     class ModManager //Class 129
     {
-        public static String ClassName = "\u0023\u003DqW\u0024aXrDCVn2EqZL9WJ7UAI8x4GkP_aLJs_UX9w7ZUtVmvqMwlp7YXp2KlmRZRBVK9";
+        public static String ClassName = "\u0023\u003DqJUmemLQhBEXKCdFyn_BEkg3iAjBDniNM4R2YZ7z0NCBwEeejPbDIXdELkvwl4oWR";
 
         private static Type type;
         public static Type Type
@@ -28,16 +28,7 @@ namespace ClassLibrary2.Osu.GameplayElements.Scoring
             }
         }
 
-        public static String ModsInstance = "\u0023\u003DqqQ_yLdFbeEbzu8hQoO1h_g\u003D\u003D";
-
-        private static T test<T>(object this0)
-        {
-            Console.WriteLine("Test Function");
-            var value = this0.CallMethod(null, "\u0023\u003DqPopUZdt\u0024MElxJY8Yofx32Q\u003D\u003D");
-            Console.WriteLine("test1: {0} test2: {1}", value,
-                (T)value);
-            return (T)value;
-        }
+        public static String ModsInstance = "\u0023\u003DqxL_\u0024pRZFbEUj7CEOv2La5g\u003D\u003D";
 
         public static ObfuscatedValue<Mods> _currentMods =
             new ObfuscatedValue<Mods>(Type.GetFieldValue(ModsInstance, Flags.StaticPrivate));

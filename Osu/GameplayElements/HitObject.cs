@@ -9,11 +9,10 @@ namespace ClassLibrary2.Osu.GameplayElements
 {
     public class HitObject : EventArgs
     {
-        public const String unkInstance = "\u0023\u003DqtVdlywU9QJFAwEKKz1jWmQ\u003D\u003D";
-        public const String TypeInstance = "\u0023\u003DqQX9p0s1YHUgJSgPBx7oyaw\u003D\u003D";
-        public const String StartTimeInstance = "\u0023\u003DqgKY2HiQ5DrxwT8DbSBchig\u003D\u003D";
-        public const String EndTimeInstance = "\u0023\u003DqubrbLs_ESmzhKNZXFXab5A\u003D\u003D";
-        public const String StackInstance = "\u0023\u003DqxZdyo0TkMAS4FccK9r7rpw\u003D\u003D";
+        public const String TypeInstance = "\u0023\u003DqLcBMT8F\u0024RmPrw9neLqoWfg\u003D\u003D"; //Player Circa 60 HitObject -> here lies HitObject extended
+        public const String StartTimeInstance = "\u0023\u003Dqompl_VSVwmxLmlZDD4hRYA\u003D\u003D";
+        public const String EndTimeInstance = "\u0023\u003DqT6IeteOWKhxT\u0024P2e3EuR7Q\u003D\u003D";
+       // public const String StackInstance = "\u0023\u003DqxZdyo0TkMAS4FccK9r7rpw\u003D\u003D";
 
         private static Type type;        //Obfuscated Name for Reflection
         public object sender;        //Obfuscated Name for Reflection

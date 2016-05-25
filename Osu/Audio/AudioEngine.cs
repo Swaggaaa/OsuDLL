@@ -7,8 +7,12 @@ namespace ClassLibrary2.Osu.Audio
 {
     static class AudioEngine //Class 645
     {
-        public static String ClassName = "\u0023\u003DqH01_Zh1vfg_VhY1YnCESaMCGCxGa\u0024dEgSKvbVBF_KkI\u003D";
-        public static String CurrentTimeInstance = "\u0023\u003DqKcLj5u_KO7gXi93_EzFeuQ\u003D\u003D";
+        public static String ClassName = "\u0023\u003DqaYlrGZgMNSKEYZs0i4Pb73f0xABCzGUfMeU4X2j1mR4\u003D";
+        public struct Fields
+        {
+         public const String CurrentTime = "\u0023\u003DqHV7zOFk3FFrnDXc9CNWYPg\u003D\u003D";
+
+        }
 
         private static Type type;        //Obfuscated Name for Reflection
         private static object actualObject;        //Obfuscated Name for Reflection
@@ -20,7 +24,7 @@ namespace ClassLibrary2.Osu.Audio
             {
                 if (_currentTime == null)
                 {
-                    _currentTime = type.GetMember(CurrentTimeInstance, 
+                    _currentTime = type.GetMember(Fields.CurrentTime, 
                         BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).FirstOrDefault();
                     if (_currentTime == null)
                     {
@@ -38,7 +42,7 @@ namespace ClassLibrary2.Osu.Audio
                 var value = Helper.GetValue<object>(memberInfo, null);
                 Console.WriteLine("Name {0} Value: {1}", memberInfo.Name, value);
             }*/
-            _currentTime = type.GetMember(CurrentTimeInstance, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).FirstOrDefault();
+            _currentTime = type.GetMember((Fields.CurrentTime, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).FirstOrDefault();
         }
     }
 }
