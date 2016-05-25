@@ -20,6 +20,7 @@ namespace ClassLibrary2.Osu.Graphics
 
         public struct Methods
         {
+            //Removed from game after drama
             public const String TakeDesktopScreenshot = "\u0023\u003DqLp_KRsaIEV6vO6n\u002427EHX33lL2C4wHnXV2R_PywbI1I\u003D"; //internal static byte[]
         }
 
@@ -51,7 +52,7 @@ namespace ClassLibrary2.Osu.Graphics
 
         public static void Init()
         {
-            TakeDesktopScreenshot = (TakeDesktopScreenshotDelegate)Delegate.CreateDelegate(typeof (TakeDesktopScreenshotDelegate), TakeDesktopScreenshotInfo);
+            //TakeDesktopScreenshot = (TakeDesktopScreenshotDelegate)Delegate.CreateDelegate(typeof (TakeDesktopScreenshotDelegate), TakeDesktopScreenshotInfo);
 
         }
     }

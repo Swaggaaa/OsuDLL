@@ -112,6 +112,8 @@ namespace ClassLibrary2.Osu
             HookDictionary["Player.CheckFlashLightHax"] = new HookManager(Player.CheckFlashLightHaxInfo, ((Action<object>)CheckFlashLightHaxTarget).Method);
             HookDictionary["Player.HaxCheck"] = new HookManager(Player.HackCheckInfo, ((Action<object, bool>)HaxCheckTarget).Method);
             HookDictionary["Process.GetProcesses"] = new HookManager(((Func<Process[]>)Process.GetProcesses).Method, ((Func<Process[]>)GetProcessesTarget).Method);
+            Score.Hook();
+
         }
 
         public void InstallHooks()

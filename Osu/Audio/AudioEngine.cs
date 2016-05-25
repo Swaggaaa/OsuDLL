@@ -42,7 +42,7 @@ namespace ClassLibrary2.Osu.Audio
                 var value = Helper.GetValue<object>(memberInfo, null);
                 Console.WriteLine("Name {0} Value: {1}", memberInfo.Name, value);
             }*/
-            _currentTime = type.GetMember((Fields.CurrentTime, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).FirstOrDefault();
+            _currentTime = type.GetMember((Fields.CurrentTime), BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).FirstOrDefault();
         }
     }
 }

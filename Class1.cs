@@ -110,9 +110,10 @@ namespace ClassLibrary2
             {
                 BeatmapManager.Init();
                 AudioEngine.Init();
-                Class925.Init();
-                Class370.Init();
+                //Class925.Init();
+                //Class370.Init();
                 Screenshot.Init();
+                Hack.OsuDirect.Init();
                 //Osu.Classes.Player.Init(assembly);
             }
             catch (Exception e)
@@ -137,121 +138,6 @@ namespace ClassLibrary2
             Console.SetOut(standardOutput);
             Console.WriteLine("{0} - {1}", Process.GetCurrentProcess().MainModule.FileName, ah);
         }
-
-        private static HookManager stringFormatHook;
-        public static string OwnFormat(string stringToFormat, object arg0, object arg1, object arg2)
-        {
-            try
-            {
-                if (stringToFormat == "{1}")
-                {
-                    //Console.WriteLine("FODASS");
-                    return arg1.ToString();
-                }
-               // Console.WriteLine("'{0}' '{1}' '{2}' '{3}'", stringToFormat, arg0, arg1, arg2);
-                var val = (string)stringFormatHook.CallOriginal(null, stringToFormat, arg0, arg1, arg2);
-                if (val.StartsWith(@"https://osu.ppy.sh/d/"))
-                {
-                    int pos = val.IndexOf("?u");
-                    val = val.Substring(0, pos);
-                    val = val.Replace("https://osu.ppy.sh", @"http://ripple.moe");
-                }
-                val = val.Normalize();
-                //Console.WriteLine(val);
-                return val;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-
-        }
-
-        private static HookManager CtorHook;
-
-        public static object ctorKek(object sender, string filename, string url)
-        {
-           // Console.WriteLine("{0}", sender);
-            //Console.WriteLine("{0} {1}", filename, url);
-            try
-            {
-                if (url.StartsWith(@"https://osu.ppy.sh/d/"))
-                {
-                   // Console.WriteLine("Starts with: {0}", url);
-                    int pos = url.IndexOf("?u");
-                    url = url.Substring(0, pos);
-                    url = url.Replace("https://osu.ppy.sh/d", @"https://m.zxq.co");
-                    url += ".osz";
-                   // Console.WriteLine("{0} {1}", filename, url);
-
-                }
-                CtorHook.Uninstall();
-                var val = sender.GetType().CreateInstance(filename, url);
-                CtorHook.Install();
-                //var val = CtorHook.CallOriginal(sender, filename, url);
-                return val;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-            return sender;
-
-        }
-
-        private static  HookManager CreateWebRequestHook;
-
-        private static HttpWebRequest CreateWebRequest(object sender)
-        {
-            //Console.WriteLine(sender.GetType());
-            try
-            {
-
-                var url = (string)sender
-    .GetFieldValue("\u0023\u003DqNGWS8qlH2PX27M7JwGE1Dg\u003D\u003D", Flags.AllMembers);
-
-                if (url.StartsWith(@"https://osu.ppy.sh/d/"))
-                {
-                    Console.WriteLine("Starts with: {0}", url);
-                    int pos = url.IndexOf("?u");
-                    url = url.Substring(0, pos);
-                    url = url.Replace("https://osu.ppy.sh/d", @"https://m.zxq.co");
-                    url += ".osz";
-                    Console.WriteLine("{0}", url);
-                    sender
-                    .SetFieldValue("\u0023\u003DqNGWS8qlH2PX27M7JwGE1Dg\u003D\u003D", url, Flags.AllMembers);
-                    return WebRequest.Create(url) as HttpWebRequest;
-
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-            return (HttpWebRequest) CreateWebRequestHook.CallOriginal(sender);
-        }
-
-        private static HookManager CompleteHook;
-
-
-        private static void Complete(object sender, Exception e)
-        {
-            if (e != null)
-            {
-                Console.WriteLine(e);
-            }
-            CompleteHook.CallOriginal(sender, e);
-            return;
-        }
-
-        private static HookManager BullShitHook;
-        private static void BullShit(object sender)
-        {
-            Console.WriteLine("Go fuck yourself bullshit function");
-            return;
-        }
-
 
         async static void hack()
         {
@@ -291,21 +177,7 @@ namespace ClassLibrary2
                 {
                     Console.WriteLine(method.Name);
                 }*/
-                var s = Global.Osu.GetType("\u0023\u003DqH68yGQ_EReUmIBPEnkIdZD\u0024jf33JdJ8aCFK8gofb7Ac\u003D");
 
-                CreateWebRequestHook = new HookManager(s.Method("\u0023\u003Dqkx3lh2NrhIV8x0UECfx3An\u0024xe2_fqRu9oyX3ZVoKKjA\u003D"), 
-                    ((Func<object, HttpWebRequest>)CreateWebRequest).Method);
-                CreateWebRequestHook.Install();
-
-                CompleteHook = new HookManager(s.Method("\u0023\u003Dqc_txPs0IWOLuyOEyikGQWA\u003D\u003D"),
-                    ((Action<object, Exception>)Complete).Method);
-                CompleteHook.Install();
-
-                BullShitHook = new HookManager(s.Method("\u0023\u003DqPvYEtTTvu6tgnGLCZ_l8QNgIHSkamAySHSNBbKC5V7w\u003D"),
-                    ((Action<object>)BullShit).Method);
-                BullShitHook.Install();
-
-                Score.Hook();
 
                 //ServicePointManager.ServerCertificateValidationCallback = new System.Net.Security.RemoteCertificateValidationCallback(AcceptAllCertifications);
                 BanchoClient.Permission |= Permissions.Supporter;
